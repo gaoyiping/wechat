@@ -1,0 +1,149 @@
+﻿
+/*--------------设置选中菜单字体颜色------------------------------*/
+
+/*----管理员菜单字体颜色------*/
+function SetSaveAdminMenuFontColor(id)
+{
+ 
+    if(document.getElementById('LeftMenuImg_'+id)!=null)
+    {
+        document.getElementById('LeftMenuImg_'+id).className='ico_left_direct_hover';
+    }
+    if(document.getElementById('LeftMenu_'+id)!=null)
+    {
+        document.getElementById('LeftMenu_'+id).style.color="#FF0000";
+    }
+    
+    
+}
+/*-------------------店铺菜单字体颜色-------------------------*/
+function SetSaveMenuFontColor(id,typeid,num)
+{
+   
+    for (var i=1;i<=num ;i++ )
+    {	
+	    document.getElementById('LeftMenuImg_'+typeid+'_'+i).className='ico_left_direct_stand';
+		document.getElementById('LeftMenu_'+typeid+'_'+i).style.color="0F0F0F";	
+    }
+
+    document.getElementById('LeftMenuImg_'+typeid+'_'+id).className='ico_left_direct_hover';
+	document.getElementById('LeftMenu_'+typeid+'_'+id).style.color="#FF0000";
+
+
+    var selectvalue = -1;
+    var selectid=typeid;
+
+    for(j=1;j<=4;j++)
+	{
+		document.getElementById('MainMenu_' + j).className='LH28 leftNavigMenu';
+	    document.getElementById('NavigMenu_' + j).className ='leftNavigMenuBg';
+
+	}
+    if (document.getElementById('MainMenu_' + selectvalue)) {
+        document.getElementById('MainMenu_' + selectvalue).className = 'LH28 leftNavigMenu';
+        if(document.getElementById('NavigMenu_' + selectvalue))
+        document.getElementById('NavigMenu_' + selectvalue).className = 'leftNavigMenuBg';
+        selectvalue = -1;
+    }
+    if (document.getElementById('MainMenu_' + selectid)) {
+        document.getElementById('MainMenu_' + selectid).className = 'LH28 leftNavigMenu_hover';
+        if (document.getElementById('NavigMenu_' + selectid))
+        document.getElementById('NavigMenu_' + selectid).className = 'leftNavigMenuBg_Open';
+        selectvalue = selectid;
+    }
+    ShowStoreMenu(selectid);
+
+
+}
+/*-------------会员菜单字段颜色--------------------------------*/
+function SetSaveMemberMenuFontColor(id)
+{
+    if(document.getElementById('LeftMenuImg_'+id)!=null)
+    {
+        document.getElementById('LeftMenuImg_'+id).className='ico_left_direct_hover';
+    }
+    if(document.getElementById('LeftMenu_'+id)!=null)
+    {
+        document.getElementById('LeftMenu_'+id).style.color="#FF0000";
+    }
+    var selectvalue = -1;
+    var selectid = 1;
+    if (id < 15) {
+        selectid = 1;
+    }
+    else if (id >= 25 && id < 36) {
+        selectid = 2;
+    }
+    else if (id >= 36 && id < 45) {
+        selectid = 3;
+    }
+    else if (id >= 45 && id < 56) {
+        selectid = 4;
+    }
+    else if (id >= 56 && id < 65) {
+        selectid = 5;
+    }
+    else if (id >= 65) {
+    selectid = 6;
+    }
+
+    if (document.getElementById('MainMenu_' + selectvalue)) {
+        document.getElementById('MainMenu_' + selectvalue).className = 'LH28 leftNavigMenu';
+        if (document.getElementById('NavigMenu_' + selectvalue))
+            document.getElementById('NavigMenu_' + selectvalue).className = 'leftNavigMenuBg';
+        selectvalue = -1;
+    }
+    if (document.getElementById('MainMenu_' + selectid)) {
+        document.getElementById('MainMenu_' + selectid).className = 'LH28 leftNavigMenu_hover';
+        if (document.getElementById('NavigMenu_' + selectid))
+            document.getElementById('NavigMenu_' + selectid).className = 'leftNavigMenuBg_Open';
+        selectvalue = selectid;
+    }
+
+
+    ShowMeberMenu(selectid);
+}
+/*-------------分公司菜单字段颜色--------------------------------*/
+function SetSaveBranchMenuFontColor(id) {
+    if (document.getElementById('LeftMenuImg_' + id) != null) {
+        document.getElementById('LeftMenuImg_' + id).className = 'ico_left_direct_hover';
+    }
+    if (document.getElementById('LeftMenu_' + id) != null) {
+        document.getElementById('LeftMenu_' + id).style.color = "#FF0000";
+    }
+    var selectvalue = -1;
+    var selectid = 1;
+    if (id < 15) {
+        selectid = 1;
+    }
+    else if (id >= 15 && id < 25) {
+        selectid = 2;
+    }
+    else if (id >= 25 && id < 35) {
+        selectid = 3;
+    }
+    else if (id >= 35 && id < 55) {
+        selectid = 4;
+    }
+    else if (id >= 55 && id < 65) {
+        selectid = 5;
+    }
+    if (document.getElementById('MainMenu_' + selectvalue)) {
+        document.getElementById('MainMenu_' + selectvalue).className = 'LH28 leftNavigMenu';
+        if (document.getElementById('NavigMenu_' + selectvalue))
+            document.getElementById('NavigMenu_' + selectvalue).className = 'leftNavigMenuBg';
+        selectvalue = -1;
+    }
+    if (document.getElementById('MainMenu_' + selectid)) {
+        document.getElementById('MainMenu_' + selectid).className = 'LH28 leftNavigMenu_hover';
+        if (document.getElementById('NavigMenu_' + selectid))
+            document.getElementById('NavigMenu_' + selectid).className = 'leftNavigMenuBg_Open';
+        selectvalue = selectid;
+    }
+
+
+    ShowBranchMenu(selectid);
+}
+
+
+

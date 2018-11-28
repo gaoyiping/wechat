@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>通知</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link rel="stylesheet" href="modpub/css/base.css" type="text/css">
+<link rel="stylesheet" href="modpub/css/base.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="/new_style/css/sanming.css" />
+    <link rel="stylesheet" type="text/css" href="/new_style/css/Popup.css" />
+
+<body scroll="yes">
+<div style="background-color: #ffffff; margin-right: 2px" id="Div_right">
+        <table style="width: 99%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="line_leftright_borderclor">
+
+                        <script>
+                                     
+                        </script>
+
+                        <div style="margin-top: -1px; height: 30px;  overflow: hidden" id="ctl00_Div_right_top"
+                            class="YFTmainright_r1_c2_gj">
+                            <div style="position: relative; line-height: 30px; width: 100%">
+                                &nbsp;<span class="Font_red Font_addbold">[管理中心]</span> >> 新闻管理 >> 查看新闻
+                            </div>
+                        </div>
+                        <div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible"
+                            id="Div_Content"><br />
+<br/><br/>
+
+<table width="90%" height="10px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#EBF3FB" style="border:solid 1px #2D96F2">
+  <tr>
+    <td width="100%" valign="top">
+      <p style="padding:10px;text-align:center;font-size:16px">新闻内容</p>
+      <table width="90%" height="200px" border="0" align="center" bgcolor="">
+				<tr>
+          <td align='center' bgcolor="" height="30px">
+            <big><strong>{$notice->title}</strong></big></td></tr>			
+				<tr>
+          <td bgcolor="" valign="top">
+            <span style="line-height:20px;letter-spacing:1px;">{$notice->content}</span></td>
+				</tr>
+      </table>	  
+      <p align="center"><br/>
+        <input value="返回" class="b02" type="button" onclick="history.back();" /><br/>
+      &nbsp; </p>
+    </td>
+  </tr>
+</table>
+
+ </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="YFTmainright_r3_c2_gj" height="1">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script language="javascript" src="/new_style/css/webjs.js"> </script>
+</body>
+</html>

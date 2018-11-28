@@ -1,0 +1,20 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<span>立即购买</span>
+	</header>
+</div>
+{</block>}
+{<block name=javascript>}
+<script language="javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+	wx.config({debug: true, appId: '{<$appId>}', timestamp: {<$timestamp>}, nonceStr: '{<noncestr>}', signature: '{$signature}', jsApiList: []});
+	wx.ready(function(){
+		alert("isready");
+	});	
+});
+</script>
+{</block>}

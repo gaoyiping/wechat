@@ -1,0 +1,56 @@
+<?php
+require_once(MO_LIB_DIR . '/DBAction.class.php');
+
+class resetpwdAction extends Action {
+
+	public function getDefaultView() {
+		return;
+	}
+
+	public function execute() {	
+		$db = DBAction::getInstance();
+		$request = $this->getContext()->getRequest();		
+		$userid = $request->getParameter("id");
+		$grade = $request->getParameter("grade");
+	
+		$type= rand(1,9)+rand(1,9)+rand(1,9)+rand(1,9)+rand(1,9)+rand(1,9);
+		$pwd = md5($type);
+		$sql = "update ntb_user set ";
+		
+		if (1 == $grade){
+			$sql .= "first_pwd = '$pwd'";
+		}
+		
+		if (2 == $grade){
+			$sql .= "second_pwd = '$pwd' " ;
+		}
+
+		if (3 == $grade){
+			$sql .= "first_pwd = '$pwd', second_pwd = '$pwd' " ;
+		}
+		
+		$sql .= "where user_id = '$userid'";
+		
+		$r = $db->update($sql);
+		$url = "index.php?module=CertifiedUserList&action=modify&id=$userid";
+		if($r == -1){
+			header("Content-Type: text/html;charset=utf-8");
+			echo"<script language='javascript'>" . 
+				"alert('未知原因，重设密码失败！');" . 
+				"location.href='$url';</script>";
+		} else {
+			header("Content-Type: text/html;charset=utf-8");
+			echo"<script language='javascript'>" . 
+				"alert('重设密码成功，请记住密码 $type ！');" . 
+				"location.href='$url';</script>";
+		}
+		return;
+	}
+
+	public function getRequestMethods() {
+		return Request :: POST;
+	}
+ 
+}
+
+?>

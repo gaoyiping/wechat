@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="resource/css/style.css" />
+</head>
+
+
+<body>
+<div class="place">
+	<u class="placeul">
+		<li><a href="#">后台管理</a></li>
+		<li><a href="#">会员列表</a></li>
+	</u>
+</div>
+
+<div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible" id="Div_Content">
+	<div style="margin-top:10px;padding:10px;height:30px; width:100%;border-bottom:solid 1px #dedede; height:72px; border-left:solid 1px #fff;border-right:solid 1px #fff; ">
+    <form name="form1" action="index.php" method="get">
+        <input type="hidden" name="module" value="CertifiedUserList">
+        <table width="99%" border="0" align="center">
+            <tbody><tr><td>
+                聘位
+                <select name="uplevel" style="height:24px;" class="scinput_s">
+                    <option value="">全部</option>
+                    <option value="0">见习小二</option>
+                    <option value="1">店小二</option>
+                    <option value="6">伙计</option>
+                    <option value="7">管家</option>
+                    <option value="2">掌柜</option>
+                    <option value="3">东家</option>
+                    <option value="4">富豪</option>
+                    <option value="5">大富豪</option>
+                </select>
+
+                ID/名称
+                    <input type="text" name="keyword" size="8" value="" class="scinput_s">
+                推荐编号
+                <input type="text" name="p_node" size="8" value="" class="scinput_s">
+                
+                <br>   <br>
+                <input type="submit" value="查 询" class="scbtn">
+            </td></tr>
+        </tbody></table>
+    </form>
+</div>
+
+<form name="form2" method="post" action="index.php?module=CertifiedUserList&amp;action=okall">
+        <table align="center" bgcolor="#dedede" border="0" cellpadding="0" cellspacing="0" width="99%">
+            <tbody><tr><td>
+            <table width="100%" class="tablelist" cellpadding="5" cellspacing="1" border="0">
+                <thead>
+                    <tr>
+                        <th>选</th>
+                        <th>ID</th>
+                        <th>名称</th>
+                        <th>等级</th>
+                        <th>推荐编号</th>
+                        <th>积分</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+            <tbody>
+
+                    {<foreach $userlist as $item>}
+            <tr bgColor=#FFFFFF>
+                <td><input type="checkbox" name="ids[]" value="{$item->id}" onclick="ccolor(this);"/></td>
+                <td align="center">{<$item.id>}</td>
+                <td align="center">{<$item.wx_name>}</td>
+                <td align="center">{<$item.uplevel>}</td>
+                <td align="center">{<$item.wx_relation>}</td>
+                <td align="center">{<$item.point_gold>}</td>
+				<td align="center">
+					<a href="#" class="tablelink">修改</a> |
+					<a href="#" onclick="Showopen('');" class="tablelink">查看</a>
+				</td>
+
+                
+            </tr>
+    				{</foreach>}
+
+                </tbody>
+    </table>
+    </td></tr>
+            <tr height="40" bgcolor="white"><td valign="middle">
+                    <a href="javascript:e('a');">全选</a> | <a href="javascript:e('o');">反选</a>
+                    <input type="submit" class="scbtn" name="lock" value="设置报单中心" onclick="return confirm('设置报单中心？');">
+                    <input type="submit" class="scbtn" name="lock" value="取消报单中心" onclick="return confirm('取消报单中心？');">
+                    
+                </td></tr>
+            </tbody></table>
+    </form>
+
+    <table align="center">
+            <tbody><tr>
+                <td>
+                    <div class="pages">
+                        共有 40164条记录 | 当前1/4017页 [<a>首页</a>] [<a>←</a>] <a><strong>1</strong></a> <a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=2">2</a> <a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=3">3</a> <a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=4">4</a> <a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=5">5</a> <a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=6">6</a> <a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=7">7</a> <a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=8">8</a> <a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=9">9</a> <a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=10">10</a> [<a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=11">→</a>] [<a class="page" href="index.php?module=CertifiedUserList&amp;uplevel=&amp;keyword=&amp;phone=&amp;startdate=&amp;enddate=&amp;page=4017">尾页</a>]
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?php
+require_once(MO_LIB_DIR . '/DBAction.class.php');
+
+
+class editAction extends Action {
+
+	public function getDefaultView() {
+		$request = $this->getContext()->getRequest();
+		$db = DBAction::getInstance();	
+				
+         $GroupID = addslashes(trim($request->getParameter('GroupID')));
+		  if($GroupID!="")
+		  {
+		     $sql1="select * from admin_cg_group where GroupID=".$GroupID.""; 
+			 
+                  $r = $db->select($sql1);
+				  if($r)
+				  {
+					  //处理价格格式
+					
+			          $request->setAttribute("GroupID",$r[0]->GroupID);
+					  $request->setAttribute("G_Level",$r[0]->G_Level);
+                       $request->setAttribute("G_CName",$r[0]->G_CName);
+				
+				  }
+		  }
+		  else
+		  {
+			      $request->setAttribute("GroupID",0);
+		          $request->setAttribute("G_Level",1);
+                  $request->setAttribute("G_CName","");
+		  }
+
+	    
+
+		return View :: INPUT;
+	}
+
+	public function execute(){		
+     	$db = DBAction::getInstance();
+		$request = $this->getContext()->getRequest();
+		   $GroupID = addslashes(trim($request->getParameter('GroupID')));
+		   $G_Level = addslashes(trim($request->getParameter('G_Level')));
+		     $G_CName = addslashes(trim($request->getParameter('G_CName')));
+
+			 
+             
+		   //添加商品
+		   $sql = "update admin_cg_group set G_CName='$G_CName' where GroupID='$GroupID'" ;
+			
+		   $r = $db->update($sql);	
+
+		   if($r == -1) {
+			header("Content-type:text/html;charset=utf-8");
+			echo "<script type='text/javascript'>" .
+				"alert('未知原因，修改地区失败！');" .
+				"</script>";
+			return $this->getDefaultView();
+		} else {
+			header("Content-type:text/html;charset=utf-8");
+			echo "<script type='text/javascript'>" .
+				"alert('修改地区成功!');" .
+				"location.href='index.php?module=group&action=right&GroupID=".$GroupID."';window.parent.frames['leftbody'].location.reload();  
+</script>";
+		}
+		   return;
+		
+	}
+
+	
+	public function getRequestMethods(){
+		return Request :: POST;
+	}
+
+}
+?>

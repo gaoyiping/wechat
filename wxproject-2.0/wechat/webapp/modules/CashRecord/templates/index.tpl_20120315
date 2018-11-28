@@ -1,0 +1,107 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link href="modpub/css/base.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/new_style/css/yofoto.css" />
+    <link rel="stylesheet" type="text/css" href="/new_style/css/Popup.css" />
+</head>
+<body scroll="yes">
+    <div style="background-color: #ffffff; margin-right: 2px" id="Div_right">
+        <table style="width: 99%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="line_leftright_borderclor">
+
+                        <script>
+                                     
+                        </script>
+
+                        <div style="margin-top: -1px; height: 30px;  overflow: hidden" id="ctl00_Div_right_top"
+                            class="YFTmainright_r1_c2_gj">
+                            <div style="position: relative; line-height: 30px; width: 100%">
+                                &nbsp;<span class="Font_red Font_addbold">[会员中心]</span> >> 电子货币操作记录
+                            </div>
+                        </div>
+                        <div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible;"
+                            id="Div_Content"><br />
+
+<form action="index.php?module=CashRecord" method="post" name="form1">
+<table  border=0 cellpadding=3 cellspacing=1 width=95% align="center" bgcolor="#F1FAFF" style="border:solid 1px #2D96F2">
+  <tr><td valign=top align=center height=100% width=90%>  
+    <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
+      <tr><td></td></tr>
+      <tr><td height="20" width="100%" valign=top>        
+        <table cellspacing=0 cellpadding=0 width="100%" border=0 height=30>
+          <tr><td height=5 colspan=2><div align="center" style="font-size: 14px;font-weight: bold;">电子货币操作记录</div></td></tr>
+          <tr>
+            <td height=5 align="left"><font color=red>电子货币余额：￥{$emoney}</font></td>
+            <td height=5 align="right">
+              {assign var='day' value=$smarty.now|date_format:"%d"|intval}
+              {assign var='hour' value=$smarty.now|date_format:"%H"|intval}
+              {if $day == 1 && $hour >= 14 && $hour < 17}
+              <input type="radio" name="choose" value="0" onclick="submit();"
+                {if $choose == '0'}checked{/if}>全部 &nbsp;
+              <input type="radio" name="choose" value="4" onclick="submit();"
+                {if $choose == '4'}checked{/if}>提现 &nbsp;
+              {/if}
+              <input type="radio" name="choose" value="32" onclick="submit();"
+                {if $choose == '32'}checked{/if}>转出 &nbsp;
+              <input type="radio" name="choose" value="31" onclick="submit();"
+                {if $choose == '31'}checked{/if}>转入 &nbsp;
+              <input type="radio" name="choose" value="1" onclick="submit();"
+                {if $choose == '1'}checked{/if}>销售 &nbsp;
+              <input type="radio" name="choose" value="2" onclick="submit();"
+                {if $choose == '2'}checked{/if}>充值 &nbsp;
+              <input type="radio" name="choose" value="5" onclick="submit();"
+                {if $choose == '5'}checked{/if}>零售 </td>
+          </tr>
+        </table>
+      </td></tr>
+      <tr><td align="center">
+        <table border="0" cellpadding=5 cellspacing=0 width=100%>
+          <tr><td colspan=9 bgcolor=#2D96F2 height=1></td></tr>
+          <tr bgcolor=#2D96F2>
+            <td width=5% align="center"><span style="color: #ffffff"> 序号</span></td>
+            <td width=20% align="center"><span style="color: #ffffff">日期</span></td>
+            <td width=25% align="center"><span style="color: #ffffff">凭证号</span></td>
+            <td width=10% align="center" ><span style="color: #ffffff">金额</span></td>
+            <td width=30% align="center"><span style="color: #ffffff">备注</span></td>
+            <td width=10% align="center"><span style="color: #ffffff">状态</span></td>
+          </tr>
+          <tr><td colspan=9 bgcolor=#666666 height=1></td></tr>
+          {foreach from=$list item=item name=f1}
+          <tr>
+            <td align="center" height="30">{$smarty.foreach.f1.iteration}</td>
+            <td align="center">{$item.add_date}</td>
+            <td align="center">{$item.cfnumber}</td>
+            <td align="center" >{if $item.amount == '3900'}请看零售支付{else}{$item.amount}{/if}</td>
+            <td align="center">{$item.remark}{$item.rdesc}</td>
+            <td align="center">{if $item.status==0}<font color="red">处理中</font>{elseif $item.status==1}<font color="green">已付{else}拒付{/if}</font></td>
+          </tr>
+          {/foreach}
+          <tr><td colspan=9 bgcolor=#666666 height='1'></td></tr>
+          <tr><td colspan=9 align="left" height=25>
+              金额总计：<font color='red'>￥{$amounts|default:'0'}</font>
+              / 本页总计：<font color='red'>￥{$page_amounts|default:'0'}</font></td></tr>
+          <tr><td colspan=9 bgcolor=#2D96F2 height='1'></td></tr>
+          <tr><td colspan=9 align='center' height=25>{$pagehtml}</td></tr>
+        </table>      
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</form>
+   </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="YFTmainright_r3_c2_gj" height="1">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script language="javascript" src="/new_style/css/webjs.js"> </script>
+</body>
+</html>

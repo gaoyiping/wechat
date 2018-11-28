@@ -1,0 +1,52 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<span>确认订单</span>
+	</header>
+</div>
+<div class="block">
+	<p class="line">{<$userinfo.mail_people>}&nbsp;&nbsp;<big>{<$userinfo.mail_cellphone>}</big></p>
+	<p class="line"><small>{<$userinfo.mail_address>}</small></p>
+</div>
+<section class="ect-pro-list">
+	<ul>
+	{<foreach $cartitemlist as $cartitem>}
+		<li class="ect-pro-item">
+			<div class="ect-clear-over">
+				<a><img src="{<$cartitem.product.banner>}"></a>
+				<dl>
+					<dt>
+						<h4 class="ect-pro-title">{<$cartitem.product.name>}</h4>
+					</dt>
+					<dt>
+						<p>
+							<strong id="{<$cartitem.product.id>}" class="mcolor" data-price="{<$cartitem.product.price>}", data-count="{<$cartitem.count>}">¥{<$cartitem.product.price * $cartitem.product_count>}</strong>
+							&nbsp;
+							<small>【<span class="mcolor">¥{<$cartitem.product.price>} x {<$cartitem.product_count>}</span>】</small></p>
+					</dt>
+				</dl>
+			</div>
+		</li>
+	{</foreach>}
+	</ul>
+</section>
+<form action="{<spUrl c=wxmall a=ordercreate>}" method="POST">
+<div class="block">
+	<p class="line text-right">该订单完成后，您将获得 <span class="mcolor">{<$cartpoint>}</span>积分</p>
+	<p class="line text-right">商品总价 <span class="mcolor">¥ {<$cartprice>}元</span></p>
+</div>
+<div class="block">
+	<div class="radio">
+		<label><input type="radio" name="paytype" value="point" checked>积分支付 【剩余：¥{<$user.point_gold>}】</label>
+	</div>
+	<div class="radio">
+		<label><input type="radio" name="paytype" value="wxpay">微信支付</label>
+	</div>
+</div>
+<div class="ect-pro-buttongroup">
+	<button type="submit" class="btn btn-success btn-block" style="width: 80%;margin: 0 auto;">立即结算</button>
+</div>
+</form>
+{</block>}

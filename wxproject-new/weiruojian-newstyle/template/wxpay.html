@@ -1,0 +1,33 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div style="width: 60%; margin-top: 3em; margin-left: auto; margin-right: auto;"><img id="payimg" src="resource/wxpay1.png" style="width: 100%;"/></div>
+{</block>}
+
+{<block name=javascript>}
+<script language="javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+	wx.config({<$params>});
+	wx.ready(function(){
+		WeixinJSBridge.invoke('getBrandWCPayRequest', {<$params>},
+			function(res){
+				var msg = res.err_msg.toUpperCase();
+				if (msg.indexOf('OK') >= 0) {
+					alert("支付完成！");
+					location.href="{<spUrl c=paper a=index>}";
+				}
+				if (msg.indexOf('FAIL') >= 0) {
+					alert("支付失败！");
+					location.href="{<spUrl c=paper a=index>}";
+				}
+				if (msg.indexOf('CANCEL') >= 0) {
+					alert("支付取消！");
+					location.href="{<spUrl c=paper a=index>}";
+				}
+			}
+		);
+	});	
+});
+</script>
+{</block>}

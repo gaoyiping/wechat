@@ -1,0 +1,11 @@
+<?php
+class IndexInputView extends SmartyView {
+    public function execute() {
+		$request = $this->getContext()->getRequest();		
+		$this->setAttribute('huiyuan',$request->getAttribute('huiyuan'));
+			$this->setAttribute('dianpu',$request->getAttribute('dianpu'));
+				$this->setAttribute('zongjin',$request->getAttribute('zongjin'));
+        $this->setTemplate("index.tpl");
+    }
+}
+?>

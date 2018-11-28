@@ -1,0 +1,44 @@
+<?php
+require_once(MO_LIB_DIR . '/DBAction.class.php');
+class IndexAction extends Action {
+
+	public function getDefaultView() {
+		$db = DBAction::getInstance();
+
+		$request = $this->getContext()->getRequest();	
+		$userid = $this->getContext()->getStorage()->read('_user_id');
+		$request->setAttribute('userID',$userid);
+		$dianputype = $this->getContext()->getStorage()->read('_dianputype');
+       $GroupID_3 = $this->getContext()->getStorage()->read('_GroupID_3');
+
+		
+		$diqusql=" select a.GroupID as xianID,a.G_CName as xianname ,"
+			 ." (select G_CName from  admin_cg_group where GroupID=a.G_ParentID) as shiname,"
+			
+			 ." (select  (select G_CName from  admin_cg_group where GroupID=b.G_ParentID) as GroupID from  admin_cg_group b where b.GroupID=a.G_ParentID)"
+			 ." as shengname  from admin_cg_group  a where GroupID='$GroupID_3'";
+			  $r1 = $db->select($diqusql);
+         if($r1)
+		{
+	
+			$request->setAttribute('gname',$r1[0]);
+           
+			
+		}
+       $request->setAttribute("dianputype",$dianputype);
+
+
+		return View :: INPUT;
+	}
+
+	public function execute(){		
+		
+	}
+
+	public function getRequestMethods(){
+		return Request :: NONE;
+	}
+
+}
+
+?>

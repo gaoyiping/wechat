@@ -1,0 +1,16 @@
+<?php
+class IndexInputView extends SmartyView {
+    public function execute() {
+		$request = $this->getContext()->getRequest();
+		$this->setAttribute("boardno",$request->getAttribute("boardno"));
+		$this->setAttribute("is_black",$request->getAttribute("is_black"));
+		$this->setAttribute("userorders",$request->getAttribute("userorders"));
+		$this->setAttribute("usernodes",$request->getAttribute("usernodes"));
+		$this->setAttribute("userid",$request->getAttribute("userid"));
+		$this->setAttribute("back",$request->getAttribute("back"));
+		$this->setAttribute("counts",$request->getAttribute("counts"));
+		$this->setAttribute("error",$request->getError("error"));
+		$this->setTemplate("index.tpl");
+    }
+}
+?>

@@ -1,0 +1,51 @@
+<?php
+global $_sed_modules; 
+
+$_sed_modules = array(
+		"RegMember" => array(
+				
+			),
+		"Cash" => array(
+				
+			),
+		"CashRecord" => array(
+				
+			),
+		"Exchange" => array(
+				
+			),
+		"FinanceStatus" => array(
+				
+			),
+		"ModifyInfo" => array(
+				
+			),
+		"UpdatePwd" => array(
+				
+			),
+		"Delivery" => array(
+				
+			),
+		"CountInfo" => array(
+				
+			),
+		"OrgStatus" => array(
+
+			),		
+		"RProduct" => array(
+				
+			),		
+		"HandleOrder" => array(
+				
+			),		
+		"RProduct" => array(
+				
+			),		
+		"AutoDeal" => array(
+				
+			),		
+		"OrderSearch" => array(
+				
+			)
+	);
+?>

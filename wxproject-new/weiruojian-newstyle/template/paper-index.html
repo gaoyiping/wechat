@@ -1,0 +1,30 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<a href="{<spUrl c=userinfo a=index>}" class="pull-left glyphicon glyphicon-menu-left"></a>
+		<span>订单管理</span>
+	</header>
+</div>
+<div class="ect-pro-list user-order" style="border-bottom:none;">
+	<ul>
+		{<foreach $paperlist as $paper>}
+		<li style="border-bottom: 1px #e3e3e3 dotted;">
+			<a href="{<spUrl c=paper a=detail pid=$paper.id>}"><img src="{<$paper.product[0].banner>}" class="pull-left">
+				<dl>
+					<dd>订单编号：{<$paper.id>}</dd>
+					<dd>订单总额：<span class="mcolor">¥{<$paper.paper_price>}</span></dd>
+					{<if $paper.paper_status>}
+					<dd>订单状态：<span class="label label-primary">{<$paper.paper_status_txt>}</span></dd>
+					{<else>}
+					<dd>订单状态：<span class="label label-default">{<$paper.paper_status_txt>}</span></dd>
+					{</if>}
+					<dd>创建时间：{<$paper.paper_time|format_date>}</dd>
+				</dl>
+			</a> 
+		</li>
+		{</foreach>}
+	</ul>
+</div>
+{</block>}

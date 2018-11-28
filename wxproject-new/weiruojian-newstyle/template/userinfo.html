@@ -1,0 +1,53 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="member-photo">
+	<div class="member-photo-img">
+		<a href="javascript:;">
+			<img src="{<$user.wx_headimage>}">
+		</a>
+	</div>
+	<div class="member-nickname">
+		<p>{<$user.wx_name>}</p>
+	</div>
+	<div class="member-info">
+		<p>硒客编号：{<$user.id>}</p>
+		<p>硒客头衔：{<$user.uplevel_txt>}</p>
+		<p>关注时间：{<$user.wx_subtime_txt>}</p>
+	</div>
+</div>
+<div class="member-purse">
+	<div class="member-purse-title" onclick="window.location='{<spUrl c=userpoint a=index>}'">
+		<i class="fl glyphicon glyphicon-align-right"></i> <span>我的钱包</span> <i class="fr glyphicon glyphicon-menu-right"></i>
+	</div>
+	<ul class="member-purse-list">
+		<li class="fl">
+			<span>¥ {<$user.point_ddjf>}</span>
+			<p>订单积分</p>
+		</li>
+		<li class="fl">
+			<span>¥ {<$user.point_xifen>}</span>
+			<p>硒粉积分</p>
+		</li>
+		<li class="fl">
+			<span>¥ {<$user.point_gold>}</span>
+			<p>可兑换积分</p>
+		</li>
+	</ul>
+</div>
+<div class="member-serve">
+	<ul>
+		<li onclick="window.location='{<spUrl c=userpoint a=history>}'"><i class="fl glyphicon glyphicon-list-alt"></i><p class="fl">收益日志</p><i class="fr glyphicon glyphicon-menu-right"></i></li>
+		<li onclick="window.location='{<spUrl c=userinfo a=qrcode>}'"><i class="fl glyphicon glyphicon-qrcode"></i><p class="fl">推广二维码</p><i class="fr glyphicon glyphicon-menu-right"></i></li>
+		<li onclick="window.location='{<spUrl c=relation a=index>}'"><i class="fl glyphicon glyphicon-globe"></i><p class="fl">星座好友</p><i class="fr glyphicon glyphicon-menu-right"></i></li>
+	</ul>
+</div>
+<div class="member-serve">
+	<ul>
+		<li onclick="window.location='{<spUrl c=cart a=index>}'"><i class="fl glyphicon glyphicon-shopping-cart"></i><p class="fl">购物车</p><i class="fr glyphicon glyphicon-menu-right"></i></li>
+		<li onclick="window.location='{<spUrl c=paper a=index>}'"><i class="fl glyphicon glyphicon-list"></i><p class="fl">订单管理</p><i class="fr glyphicon glyphicon-menu-right"></i></li>
+		<li onclick="window.location='{<spUrl c=userinfo a=infolist>}'"><i class="fl glyphicon glyphicon-edit"></i><p class="fl">个人信息</p><i class="fr glyphicon glyphicon-menu-right"></i></li>
+	</ul>
+</div>
+<div class="ect-deepbottom"></div>
+{</block>}

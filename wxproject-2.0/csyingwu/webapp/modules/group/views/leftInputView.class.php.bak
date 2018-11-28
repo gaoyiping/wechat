@@ -1,0 +1,9 @@
+﻿<?php
+class leftInputView extends SmartyView {
+    public function execute() {
+		$request = $this->getContext()->getRequest();
+	
+		$this->setTemplate("left.tpl");
+    }
+}
+?>

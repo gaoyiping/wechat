@@ -1,0 +1,9 @@
+<?php
+class IndexInputView extends SmartyView {
+    public function execute() {
+		$request = $this->getContext()->getRequest();		
+		$this->setAttribute('admin_atype',$request->getAttribute('admin_atype'));
+        $this->setTemplate("index.tpl");
+    }
+}
+?>

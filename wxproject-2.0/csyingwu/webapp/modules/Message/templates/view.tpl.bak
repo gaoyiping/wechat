@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>在线留言</title>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<link type="text/css" href="modpub/css/base.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/new_style/css/General.css" />
+    <link rel="stylesheet" type="text/css" href="/new_style/css/sanming.css" />
+</head>
+<body scroll="yes">
+    <div style="background-color: #ffffff; margin-right: 2px" id="Div_right">
+        <table style="width: 99%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="line_leftright_borderclor">
+
+                        <script>
+                                     
+                        </script>
+
+                        <div style="margin-top: -1px; height: 30px;  overflow: hidden" id="ctl00_Div_right_top"
+                            class="YFTmainright_r1_c2_gj">
+                            <div style="position: relative; line-height: 30px; width: 100%">
+                                &nbsp;<span class="Font_red Font_addbold">[综合办公]</span> >> 系统消息
+                            </div>
+                        </div>
+                        <div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible"
+                            id="Div_Content">
+        <div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible"
+                            id="Div_Content">
+ <div class="titl_bg ">
+                                                                    &nbsp;&nbsp;<span style="font-family: 微软雅黑; font-weight: bold"> <a href="index.php?module=Message">发送消息</a> 
+								    | <a href="index.php?module=Message&action=geted">已发送列表</a> </span>
+                                                                </div><br />
+<table align="center" bgcolor="#dedede" border="0" cellpadding="0" cellspacing="0" width="95%"><tr><td>
+  <table border="0" cellpadding="5" cellspacing="1" width="100%">
+    <tr class="td3"> 
+      <td width="4%"><div align="center"><font color="#FFFFFF">序</font></div></td>
+      <td width="7%"><div align="center"><font color="#FFFFFF">接收账号</font></div></td>
+      <td width="50%"><div align="center"><font color="#FFFFFF">消息内容</font></div></td>
+   
+      <td width="13%"><div align="center"><font color="#FFFFFF">发布时间</font></div></td>
+      <td width="6%"><div align="center"><font color="#FFFFFF">操作</font></div></td>
+    </tr>
+    {foreach from=$list item=item name=f1}
+    <tr class="td4"> 
+      <td> 
+        <div align="center">{$smarty.foreach.f1.iteration}</div></td>
+      <td> 
+        <div align="center"><font color="#FF0000">{$item->r_user_id}</font></div></td>
+
+ <td> 
+        <div >{$item->content}</div></td>
+      <td>
+        <div align="center">{$item->add_date}</div></td>
+      <td >
+        <div align="center">
+          <a href="index.php?module=Message&action=del&id={$item->id}" onclick="return confirm('确定要删除此条消息吗?')">删除</a>
+        </div></td>
+    </tr>
+    {/foreach}
+  </table>
+</td></tr></table><br />
+
+<table align="center"><tr><td>
+	{$pagehtml}
+</td></tr></table>
+                     </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="YFTmainright_r3_c2_gj" height="1">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script language="javascript" src="/new_style/css/webjs.js"> </script>
+</body>
+</html>

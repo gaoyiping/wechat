@@ -1,0 +1,102 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<a href="{<spUrl c=userinfo a=index>}" class="pull-left glyphicon glyphicon-menu-left"></a>
+		<span>购物车</span>
+	</header>
+</div>
+<p class="flow-price">共 <b id="total_number"></b>件商品&nbsp;总价 <b id="goods_subtotal" style="color: #1CBB7F"></b></p>
+{<if $cartlist>}
+<section class="ect-pro-list">
+	<ul>
+	{<foreach $cartlist as $cartitem>}
+		<li id="cartitem-{<$cartitem.product.id>}" class="ect-pro-item" data-count="{<$cartitem.product_count>}" data-price="{<$cartitem.product.price>}">
+			<div class="ect-clear-over">
+				<a href="#"><img src="{<$cartitem.product.banner>}"></a>
+				<dl>
+					<dt>
+						<h4 class="ect-pro-title"><a>{<$cartitem.product.name>}</a></h4>
+					</dt>
+					<dt>
+						<p><strong style="color: #1CBB7F;">¥{<$cartitem.product.price>}</strong></p>
+					</dt>
+				</dl>
+			</div>
+			<div class="ect-clear-over flow-num-del">
+				<div class="pull-left">
+					<nav>
+						<ul class="pagination pagination-sm">
+							<li><a onclick="reset_cart({<$cartitem.product.id>}, 0);"> - </a></li>
+							<li class="disabled"><a id="cartcount-{<$cartitem.product.id>}" style="color: #1CBB7F;">{<$cartitem.product_count>}</a></li>
+							<li><a onclick="reset_cart({<$cartitem.product.id>}, 1);"> + </a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="pull-right">
+					<a href="javascript:delete_cart({<$cartitem.product.id>})" style="margin-top: 0.72em; margin-right: 0.72em;">
+						<i style="font-size: 18px;color: #464646;" class="glyphicon glyphicon-trash"></i>
+					</a>
+				</div>
+			</div>
+		</li>
+	{</foreach>}
+	</ul>
+</section>
+<div class="ect-pro-buttongroup">
+	<a class="btn btn-success btn-block" style="width: 80%;margin: 0 auto;" href="{<spUrl c=wxmall a=ordercart>}">立即结算</a>
+</div>
+{<else>}
+<p class="notice">购物车空空的，赶快去购物吧！</p>
+{</if>}
+{</block>}
+
+{<block name=javascript>}
+<script language="javascript">
+$(document).ready(function(){
+	reset_price();
+});
+
+function reset_price() {
+	var total_price = 0.00;
+	var total_count = 0;
+	$.each($(".ect-pro-item"), function(idx, item) {
+		total_count = total_count + $(item).data('count');
+		total_price = total_price + ($(item).data('price') * $(item).data('count'));
+	});
+	$("#total_number").html(total_count);
+	$("#goods_subtotal").html("¥" + total_price);
+}
+
+function reset_cart(pid, isadd) {
+	var item_start = $("#cartitem-" + pid).data('count');
+	if (isadd) {
+		item_count = item_start + 1;
+	} else {
+		item_count = item_start - 1;
+	}
+	item_count = Math.max(item_count, 1);
+	item_count = Math.min(item_count, 99);
+	$("#cartitem-" + pid).data('count', item_count);
+	$("#cartcount-" + pid).html(item_count);
+	reset_price();
+	if (item_start != item_count) {
+		$.getJSON("{<spUrl c=cart a=cartcount>}", {pid: pid, count: item_count});
+	}
+}
+
+function delete_cart(pid) {
+	$("#cartitem-" + pid).remove();
+	var item_count = $(".ect-pro-item").length;
+	if (item_count == 0) {
+		$.getJSON("{<spUrl c=cart a=cartremove>}", {pid: pid}, function(result) {
+			location.reload();
+		});
+	} else {
+		reset_price();
+		$.getJSON("{<spUrl c=cart a=cartremove>}", {pid: pid});
+	}
+}
+</script>
+{</block>}

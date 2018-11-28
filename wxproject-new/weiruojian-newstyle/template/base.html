@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>{<$htmltitle>}</title>
+<link rel="stylesheet" type="text/css" href="resource/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resource/swiper.min.css"/>
+<link rel="stylesheet" type="text/css" href="resource/index.css?t={<time()%1000>}"/>
+</head>
+<body>
+<div class="con">
+	{<block name=content>}
+	{</block>}
+	<div class="footer">
+		<ul>
+			<li><a href="{<spUrl c=main a=index>}"><i class="glyphicon glyphicon-home"></i>硒客首页</a></li>
+			<li><a href="{<spUrl c=wxmall a=index>}"><i class="glyphicon glyphicon-shopping-cart"></i>微信商城</a></li>
+			<li><a href="{<spUrl c=moment a=index>}"><i class="glyphicon glyphicon-check"></i>硒客空间</a></li>
+			<li><a href="{<spUrl c=userinfo a=index>}"><i class="glyphicon glyphicon-user"></i>硒客中心</a></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="resource/jquery-2.2.1.min.js" ></script> 
+<script src="resource/jquery.swiper.min.js"></script> 
+<script src="resource/bootstrap/js/bootstrap.min.js"></script> 
+{<block name=javascript>}
+{</block>}
+</body>
+</html>

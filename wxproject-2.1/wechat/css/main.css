@@ -1,0 +1,129 @@
+@charset "utf-8";
+/* CSS Document */
+*{padding:0;margin:0;}
+body{max-width:720px;font-family:"微软雅黑";font-size:13px;background:#ebebeb;font-weight:normal;margin:0 auto;}
+ul, ol{list-style:none;}
+a{text-decoration:none;color:#999;}
+input{border:none;}
+label, button {
+cursor: pointer;
+}
+section{width:100%;float:left;}
+img{border:none;max-width:100%;}
+#banner {
+	width: 100%;
+	height: 445px;
+	overflow: hidden;
+	background: #333;
+	box-shadow: 0 0 1px #ccc
+}
+#banner .swiper-container, #banner .swiper-slide, #banner .swiper-slide img {
+	width: 100%;
+	height: 100%
+}
+#banner .banner-ind {
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	margin-top: -30px;
+	text-align: center;
+	position: relative;
+	z-index: 100
+}
+#banner .swiper-pagination-switch {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	overflow: hidden;
+	border-radius: 12px;
+	background-color: #fff;
+	box-shadow: 0 0 1px #ccc;
+	margin: 0 3px
+}
+#banner .swiper-pagination-switch.swiper-active-switch {
+	background-color: #ae1410
+}
+#hd{width:100%;float:left;margin:10px 0px;background:#fff;}
+#hd .hd{width:100%;float:left;}
+#hd .hd ul li{width:50%;float:left;box-shadow:0px 1px 1px 0px #ccc;text-align:center;padding:10px 0px;}
+#hd .hd ul li a img{max-width:100%;}
+#goods{width:96%;margin:2%;float:left;padding-bottom:50px;}
+#goods .goods{width:100%;float:left;}
+#goods .goods .goods_title{border-bottom:2px solid #999;width:100%;float:left;}
+#goods .goods .goods_title h3{height:40px;line-height:40px;margin:0;padding:0;float:left;width:100%;font-size:16px;}
+#goods .goods .goods_list{width:100%;float:left;padding-top:10px;}
+#goods .goods .goods_list ul li{width:49%;float:left;background:#fff;margin:0.5%;text-align:center;padding:10px 0px;}
+#goods .goods .goods_list ul li a{color:#999;}
+#goods .goods .goods_list ul li a img{max-width:100%;}
+#goods .goods .goods_list ul li a div{width:100%;float:left;line-height:30px;}
+#goods .goods .goods_list ul li a div.goods_t{background:#c51d25;color:#fff;margin-top:10px;font-size:14px;}
+#goods .goods .goods_list ul li a div.goods_g{}
+#goods .goods .goods_list ul li a div.goods_p span.org{color:#f26609;font-size:18px;padding-right:10px;}
+footer{width:100%;float:left;position:fixed;bottom:0px;left:0px;height:50px;background:#221714;}
+.footer ul li{width:33.33%;float:left;padding:5px 0px;line-height:20px;text-align:center;}
+.footer ul li a{color:#fff;}
+.footer ul li.red{background:#b71c25;}
+.good-disc{width:100%;float:left;background:#fbfdfc;}
+.pic-box {
+text-align: center;
+border-bottom: 1px solid #cccccc;
+padding:10px 0px;
+}
+.pic-box img {
+max-height: 100%;
+}
+.pic_t{height:50px;line-height:50px;width:100%;float:left;background:#e27908;color:#fff;font-size:18px;text-align:center;}
+.good-disc ul {
+
+border-bottom: 1px solid #cccccc;
+padding: 10px 0px;
+line-height: 25px;
+width:100%;
+float:left;
+}
+.good-disc ul.info h1{font-size:16px;float:left;margin:1%;width:98%;}
+.good-disc ul.info li{margin:0 1%;width:98%;float:left;line-height:30px;font-size:14px;color:#999;}
+.fl{float:left;}
+.fr{float:right;}
+.org{color:#f90;}
+.num-box {
+border: 1px solid #cccccc;
+height: 27px;
+line-height: 27px;
+width: 100px;
+display: inline-block;
+}
+.num-box .min{ height:27px; font-size:19px; font-weight:bold; width:25px; background:#d5d5d5; border-right:1px solid #d5d5d5; text-align:center; display:inline-block; float:left}
+.num-box .add{ height:27px; font-size:19px; font-weight:bold; width:25px; background:#d5d5d5; border-left:1px solid #d5d5d5; text-align:center; display:inline-block; float:right}
+
+.num-box .num{ width:45px; text-align:center; border:none}
+
+.disc-box{width:100%;float:left;background:#fbfdfc;}
+.disc-box h2{width:98%;float:left;margin:0 1%;font-size:16px;height:40px;line-height:40px;}
+
+.disc-box .box{ padding:10px 0px; line-height:22px;width:98%;margin:0 1%;float:left;}
+p.lheight {
+height: 20px;
+margin: 0 0 20px;
+}
+.share{width:98%;float:left;margin:0 1%;font-size:14px;border-bottom:1px dashed #ccc;line-height:40px;}
+.home{padding-left:10px;line-height:50px;}
+.home i{padding-top:13px;}
+.btn{width:80%;padding:10px;}
+.btn button{width:32%;margin:0 0.5%;float:left;height:30px;line-height:30px;border:none;background:#fff;border-radius:5px;}
+.btn button.ljgm{background:#ff6600;border:1px solid #F30;line-height:28px;height:28px;color:#fff;}
+.btn button.jrgwc{background:#f0ad4e;border:1px solid #F90;line-height:28px;height:28px;color:#fff;}
+.btn button.df{border:1px solid #F30;line-height:28px;height:28px;color:#f30;}
+header{width:100%;float:left;background:#e60303;height:40px;line-height:40px;text-align:center;position:relative;}
+.header_icon{color:#fff;position:absolute;left:10px;top:3px;}
+header h3{display:inline-block;font-size:18px;color:#fff;}
+.user_name{height:40px;line-height:40px;width:100%;float:left;padding:10px 0px;font-size:16px;color:#333;}
+.user_name i{color:#999;padding-right:10px;position:relative;top:3px;}
+.user_pic{width:100%;float:left;padding-bottom:10px;}
+.user_pic img{max-width:100%;}
+.user_nav{width:100%;float:left;padding:20px 0px;background:#fff;margin-bottom:70px;}
+.user_nav ul{margin:0 2%;width:96%;float:left;}
+.user_nav ul li{width:31.33%;float:left;margin:0 1%;}
+.user_nav ul li a div.icon{border:1px solid #dbdbdb;padding:2%;border-radius:5px;float:left;width:96%;text-align:center;}
+.user_nav ul li a div.icon img{max-width:100%;}
+.user_nav ul li a div.nav_menu{width:100%;float:left;line-height:40px;text-align:center;color:#3c3c3c;font-size:20px;}

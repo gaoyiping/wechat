@@ -1,0 +1,129 @@
+<?php
+require_once(MO_LIB_DIR . '/DBAction.class.php');
+
+
+class leftAction extends Action {
+
+		public function getDefaultView() {
+		$request = $this->getContext()->getRequest();
+		$db = DBAction::getInstance();	
+				
+
+
+		  $userlist_str="";
+
+		   $sql="select *,(SELECT  COUNT(GroupID)  from  admin_cg_group where G_ParentID=a.GroupID) as num   from admin_cg_group a where a.G_ParentID=0 order by a.GroupID"; 
+		  
+           	   $r=$db->select($sql);
+               if($r)
+				{
+				
+                      foreach($r as $list)
+					 {
+						    $img="none";
+						  $img1="expand";
+
+						  $onclick="";
+						  if($list->num!=0)
+						  {
+							
+							 $img="";
+							 $img1="collspand";
+							  $onclick="javascript:ShowMenu(this,'Menu".$list->GroupID."');";
+							
+						  }
+
+							$userlist_str= $userlist_str."<div style='padding-left:0px;font-size:12px;height:25px;'> "
+							."<img style='vertical-align:-2px;' src='/new_style/images/".$img1.".gif' id='imgMenu".$list->GroupID."' onclick=\"".$onclick."\" border='0'> <img src='/new_style/images/foldclose.gif' id='1Menu".$list->GroupID."' style='vertical-align:-2px;'/><font  style='font-size:12px;'><song><a href='index.php?module=group&action=right&GroupID=".$list->GroupID."' target='mainbody' style='color:#000;text-decoration:none;'>".$list->G_CName."[".$list->G_Num."]</a></song></font></div>";
+							$userlist_str=$userlist_str.  $this->Get_zuonum($list->GroupID,0,0);
+					 }
+					
+				}
+		
+
+	
+		
+
+		$request->setAttribute('userlist_str',$userlist_str);
+
+		return View :: INPUT;
+	}
+
+
+
+	 public function Get_zuonum($user_id,$width,$jishu)
+	 {
+		
+		   $jishu++;
+		   if($jishu==30)
+		   {
+		    return "";
+		   }
+		
+		 $width=$width+28;
+		 $db = DBAction::getInstance();
+		 static $strID="";
+	      $sql = "select  *,(SELECT  COUNT(GroupID)  from  admin_cg_group where G_ParentID=a.GroupID) as num  from admin_cg_group a  where a.G_ParentID='$user_id'";
+
+		 
+		
+		  $r = $db->select($sql);
+		  
+		  if($width==35)
+		  {
+              $strID=$strID."<div id='Menu".$user_id."' >";
+		  }
+			 else
+			 {
+				$strID=$strID."<div id='Menu".$user_id."' style='display:none;'>";
+			 } 
+		 
+		  if($r)
+		  {
+          
+		 
+			  foreach($r as $list)
+			  {
+				 
+				  $img="none";
+			      $img1="expand";
+
+				  $onclick="";
+				  if($list->num!=0)
+				  {
+					 
+				     $img="";
+                     $img1="collspand";
+					  $onclick="javascript:ShowMenu(this,'Menu".$list->GroupID."');";
+					
+				  }
+				
+                  
+				  $color="#000000";
+				 
+				       $strID=$strID."<div  style='padding-left:5px;font-size:12px;height:25px;' ><input type='text' style='width:".$width."px;float:left; border-bottom:dashed 1px #878585; height:10px;border-top:solid 1px #fff; border-left:solid 1px #fff;border-right:solid 1px #fff; ' />"
+				  ."<img style='vertical-align:2px;' src='/new_style/images/".$img1.".gif' id='imgMenu".$user_id."' onclick=\"".$onclick."\" border='0'><img style='display:".$img.";vertical-align:-2px;' src='/new_style/images/foldclose.gif' id='1Menu".$list->GroupID."'  /><font style='color:".$color.";font-size:12px;'><song><a href='index.php?module=group&action=right&GroupID=".$list->GroupID."' target='mainbody' style='color:#000;text-decoration:none;'>".$list->G_CName."[".$list->G_Num."]</a></font>&nbsp;</div>";
+					   
+				  $this->Get_zuonum($list->GroupID,$width,$jishu);
+				  
+				 
+			  }
+		  }
+           $strID=$strID."</div>";
+		  
+		   return $strID;
+	    
+	 }
+    
+
+	public function execute(){		
+		
+	}
+
+	
+	public function getRequestMethods(){
+		return Request :: NONE;
+	}
+
+}
+?>

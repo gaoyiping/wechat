@@ -1,0 +1,31 @@
+<?php
+
+//升级
+function levelUp($uid,$db){
+	$sql = "select lt,rt from ntb_user_ref where node = '$uid'";
+	$r = $db->select($sql);
+	
+	if(!$r) {
+		
+		return;
+	}
+	$user = $r[0];
+	//选择 父结点
+	$lt = $user->lt;
+	$rt = $user->rt;
+	$sql = "select node from ntb_user_ref where lt <= '$lt' and rt >= '$rt' order by rt";
+
+	$pnodes = $db->select($sql);
+	if(!$pnodes) {
+		return;
+	}
+	//节点继承线升级
+	foreach($pnodes as $v){
+		plainLevelUp($v->node,$db);
+	}
+	//执行无延迟升级
+	daliyLevelUp($db);
+
+}
+
+?>

@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>添加商品分类</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="modpub/css/base.css" />
+<script type="text/javascript" src="modpub/js/check.js" > </script>
+
+{literal}
+<script type="text/javascript">
+function check(f){	
+  if(Trim(f.pname.value)==""){
+    alert("产品分类名称不能为空！");
+    f.pname.value = '';
+    return false;
+  }
+  if(Trim(f.cost.value)==""){
+    alert("分类排序号不能为空！");
+    f.cost.value = '';
+    return false;
+  }
+  f.cost.value = Trim(f.cost.value);
+  if(!/^(([1-9][0-9]*)|0)(\.[0-9]{1,2})?$/.test(f.cost.value)){
+    alert("产品排序号必须为数字，且格式为 ####.## ！");
+    f.cost.value = '';
+    return false;
+  }
+  return true;
+}
+</script>
+{/literal}
+<link rel="stylesheet" type="text/css" href="/new_style/css/sanming.css" />
+    <link rel="stylesheet" type="text/css" href="/new_style/css/Popup.css" />
+
+<body scroll="yes">
+<div style="background-color: #ffffff; margin-right: 2px" id="Div_right">
+        <table style="width: 99%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="line_leftright_borderclor">
+
+                        <script>
+                                     
+                        </script>
+
+                        <div style="margin-top: -1px; height: 30px;  overflow: hidden" id="ctl00_Div_right_top"
+                            class="YFTmainright_r1_c2_gj">
+                            <div style="position: relative; line-height: 30px; width: 100%">
+                                &nbsp;<span class="Font_red Font_addbold">[管理中心]</span> >> 产品分类管理 >> 添加分类
+                            </div>
+                        </div>
+                        <div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible"
+                            id="Div_Content"><br /><br/>
+
+<form action="index.php?module=ProductType&action=add" method="post" onsubmit="return check(this);">
+  <table align="center"  border="0" cellpadding="0" cellspacing="0" width="90%">
+  <tr><td>
+  
+      <td align="left">
+      <table cellspacing="1" cellpadding="1" width="100%">
+       <tr class="tdTitle" > 
+      <td height="25" align="center" colspan=2> 
+        <font color="#ffffff" > 添加产品分类 </font></td>
+    </tr><tr>
+        <td class="table_body">
+        名称：</td>   <td  class="table_none">
+          <input name="pname" type="text"  class="button1" value="{$pname}"/></td> </tr>
+        <tr>
+	 <td class="table_body">类型：</td>   <td  class="table_none">
+             <select name="type">
+ <option selected value="1">
+注册/零售
+ </option>
+
+  <option  value="2">
+VIP升级
+ </option>
+ <option  value="3">
+重复消费
+ </option>
+ </select></td> </tr>
+
+	    <tr>
+        <td class="table_body">排序号：</td>   <td  class="table_none">
+          <input name="cost" type="text" style="width:200px;ime-mode:disabled" class="button1" value="100"/></td> </tr>
+
+	    <tr>
+        <td class="table_body">背景色：</td>   <td  class="table_none">
+          <input name="bgcolor" type="text" style="width:200px;ime-mode:disabled" class="button1" value="ffffff"/> 建议色值 1: EBF5FD 2: E4E9FF 3: D0F1FE 4: E2FEFA</td></tr>
+
+	  </table> 
+        <p align="center" style="padding-top:10px;"> 
+          <input type="submit" value="提 交" class="b02">
+          &nbsp;&nbsp;&nbsp; 
+         
+          <input type="button" value="返 回" class="b02" onclick="location.href='index.php?module=ProductType';">
+        </p>
+       </td>
+    </tr>
+  </table>
+</form>
+ </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="YFTmainright_r3_c2_gj" height="1">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script language="javascript" src="/new_style/css/webjs.js"> </script>
+</body>
+</html>

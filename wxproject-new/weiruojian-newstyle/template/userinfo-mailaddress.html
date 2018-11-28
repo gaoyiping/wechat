@@ -1,0 +1,30 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<span>收货地址</span>
+	</header>
+</div>
+<form action="{<spUrl c=userinfo a=setmailaddress>}" method="POST">
+	<table class="table">
+		<tbody>
+			<tr>
+				<td>收货人</td>
+				<td><input style="width: 100%" type="text" name="people" placeholder="必填" value="{<$info.mail_people>}"></td>
+			</tr>
+			<tr>
+				<td>联系电话</td>
+				<td><input style="width: 100%" type="telephone" name="cellphone" placeholder="必填" value="{<$info.mail_cellphone>}"></td>
+			</tr>
+			<tr>
+				<td>详细地址</td>
+				<td><input style="width: 100%" type="text" name="address" placeholder="必填" value="{<$info.mail_address>}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="ect-pro-buttongroup">
+		<button type="submit" class="btn btn-success btn-block" style="width: 80%;margin: 0 auto;">提交设置</button>
+	</div>
+</form>
+{</block>}

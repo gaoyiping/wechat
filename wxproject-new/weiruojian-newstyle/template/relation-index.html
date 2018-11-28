@@ -1,0 +1,105 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<a href="{<spUrl c=userinfo a=index>}" class="pull-left glyphicon glyphicon-menu-left"></a>
+		<span>星座好友</span>
+	</header>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<a href="{<spUrl c=relation a=showlevel level=1>}">
+					<p class="text-center"><img src="resource/12sign/baiyang.png"/></p>
+					<p class="text-center">白羊座</p>
+					<p class="text-center">{<$relationlist[0]>}人</p>
+				</a>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<a href="{<spUrl c=relation a=showlevel level=2>}">
+					<p class="text-center"><img src="resource/12sign/jinniu.png"/></p>
+					<p class="text-center">金牛座</p>
+					<p class="text-center">{<$relationlist[1]>}人</p>
+				</a>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<a href="{<spUrl c=relation a=showlevel level=3>}">
+					<p class="text-center"><img src="resource/12sign/shuangzi.png"/></p>
+					<p class="text-center">双子座</p>
+					<p class="text-center">{<$relationlist[2]>}人</p>
+				</a>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<p class="text-center"><img src="resource/12sign/juxie.png"/></p>
+				<p class="text-center">巨蟹座</p>
+				<p class="text-center">{<$relationlist[3]>}人</p>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<p class="text-center"><img src="resource/12sign/shizi.png"/></p>
+				<p class="text-center">狮子座</p>
+				<p class="text-center">{<$relationlist[4]>}人</p>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<p class="text-center"><img src="resource/12sign/chunv.png"/></p>
+				<p class="text-center">处女座</p>
+				<p class="text-center">{<$relationlist[5]>}人</p>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<p class="text-center"><img src="resource/12sign/tianping.png"/></p>
+				<p class="text-center">天秤座</p>
+				<p class="text-center">{<$relationlist[6]>}人</p>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<p class="text-center"><img src="resource/12sign/tianxie.png"/></p>
+				<p class="text-center">天蝎座</p>
+				<p class="text-center">{<$relationlist[7]>}人</p>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<p class="text-center"><img src="resource/12sign/sheshou.png"/></p>
+				<p class="text-center">射手座</p>
+				<p class="text-center">{<$relationlist[8]>}人</p>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<p class="text-center"><img src="resource/12sign/mojie.png"/></p>
+				<p class="text-center">摩羯座</p>
+				<p class="text-center">{<$relationlist[9]>}人</p>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<p class="text-center"><img src="resource/12sign/shuiping.png"/></p>
+				<p class="text-center">水瓶座</p>
+				<p class="text-center">{<$relationlist[10]>}人</p>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			<div class="start-sign">
+				<p class="text-center"><img src="resource/12sign/shuangyu.png"/></p>
+				<p class="text-center">双鱼座</p>
+				<p class="text-center">{<$relationlist[11]>}人</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ect-deepbottom"></div>
+{</block>}

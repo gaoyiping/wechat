@@ -1,0 +1,11 @@
+<?php
+class editInputView extends SmartyView {
+    public function execute() {
+		$request = $this->getContext()->getRequest();
+		$this->setAttribute('id',$request->getAttribute('id'));
+		$this->setAttribute("content",$request->getAttribute("content"));
+		$this->setAttribute("title",$request->getAttribute("title"));
+		$this->setTemplate("edit.tpl");
+    }
+}
+?>

@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link rel="stylesheet" type="text/css" href="modpub/css/base.css"/>
+   <link rel="stylesheet" type="text/css" href="/new_style/css/General.css" />
+    <link rel="stylesheet" type="text/css" href="/new_style/css/yofoto.css" />
+<script type="text/javascript" src="modpub/js/check.js"> </script>
+<script type="text/javascript" src="modpub/js/userinfo_check.js"> </script>
+{literal}
+<script type="text/javascript">
+var idno_error = "请输入身份证号码";
+
+function check(f){
+  if(Trim(f.idno.value) == ''){
+    alert(idno_error);
+    return false;
+  }
+  if(bind_check(f)){
+    return true;
+  } else {
+    return false;
+  }
+}
+</script>
+{/literal}
+</head>
+<body onload="bind(document.form1);" scroll="yes">
+
+  <div style="background-color: #ffffff; margin-right: 2px" id="Div_right">
+        <table style="width: 99%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="line_leftright_borderclor">
+
+                        <script>
+                                     
+                        </script>
+
+                        <div style="margin-top: -1px; height: 30px; overflow: hidden" id="ctl00_Div_right_top"
+                            class="YFTmainright_r1_c2_gj">
+                            <div style="position: relative; line-height: 30px; width: 100%">
+                                &nbsp;<span class="Font_red Font_addbold">[报表统计]</span> >> 季度销售任务完成情况
+                            </div>
+                        </div>
+                        <div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible"
+                            id="Div_Content"><br /><br />
+			    <div style="padding:10px;text-align:center;font-size:14px;">
+			    您在本季度{$jidukaishi} - {$jidujieshu} 已完成<font color="red">￥{$money}</font>的销售,{if $money<100000}还需完成￥{$xumoney}就可享受公司5%的订货返点{/if}
+			    {if $money>=100000}可享受公司的5%的订货返点￥{$money*0.05}{/if}
+			   <br />  <br /> 
+			   <div style="width:700px;">
+			   <div style="float:left;font-size:20px;padding-top:3px;"><b>完成情况</b>&nbsp;</div>
+			   <div style="width:500px;border:solid 1px #2994F4;text-align:left;float:left;">
+			   {if $money>=100000}<input type="text" style="height:22px;width:500px;border:solid 0px #fff;background:#7CC1FF;" />{/if}
+			    {if $money<100000}<input type="text" style="height:22px;width:{$money/100/2}px;border:solid 0px #fff;background:#7CC1FF;" />{/if}
+			   </div>
+			   <div style="font-size:20px;padding-top:1px;">{if $money>100000}100{else}{$money/1000}{/if}%</div>
+			   </div>
+			    </div>
+                        
+       </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="YFTmainright_r3_c2_gj" height="1">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script language="javascript" src="/new_style/css/webjs.js"> </script>
+</body>
+</html>

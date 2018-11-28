@@ -1,0 +1,29 @@
+<?php
+class addInputView extends SmartyView {
+	
+    public function execute() {
+		$request = $this->getContext()->getRequest();
+		$this->setAttribute('pname', $request->getAttribute('pname'));
+		$this->setAttribute('cost', $request->getAttribute('cost'));
+		$this->setAttribute('detail', $request->getAttribute('detail'));
+		$this->setAttribute('tbtype', $request->getAttribute('tbtype'));
+	    $this->setAttribute("rtype",$request->getAttribute("rtype"));
+		   $this->setAttribute("jifen",$request->getAttribute("jifen"));
+
+		   	$this->setAttribute('sNo', $request->getAttribute('sNo'));
+		$this->setAttribute('tiaoma', $request->getAttribute('tiaoma'));
+	    $this->setAttribute("danwei",$request->getAttribute("danwei"));
+		$this->setAttribute("zhuanmaijia",$request->getAttribute("zhuanmaijia"));
+		$this->setAttribute("qiyejia",$request->getAttribute("qiyejia"));
+		$this->setAttribute("sorder",$request->getAttribute("sorder"));
+		$this->setAttribute("tixingshu",$request->getAttribute("tixingshu"));
+		$this->setAttribute("jiesuanjia",$request->getAttribute("jiesuanjia"));
+		$this->setAttribute("jianyijia",$request->getAttribute("jianyijia"));
+		$this->setAttribute("guige",$request->getAttribute("guige"));
+	$this->setAttribute("zhuangxiangshu",$request->getAttribute("zhuangxiangshu"));
+        $this->setTemplate("add.tpl");
+		
+		
+    }
+}
+?>

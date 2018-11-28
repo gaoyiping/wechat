@@ -1,0 +1,40 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<span>立即购买</span>
+	</header>
+</div>
+<br/>
+<form action="{<spUrl c=join a=order>}" method="POST">
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td align="center" width="10%"><input type="radio" name="product" id="product1" value="1"></td>
+				<td style="padding-left: 2em;"><label style="font-weight:initial" for="product1">店小二</label></td>
+				<td align="right" width="20%"><label style="font-weight:initial" for="product1">¥99.00</label></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="radio" name="product" id="product2" value="2"></td>
+				<td style="padding-left: 2em;"><label style="font-weight:initial" for="product2">伙计</label></td>
+				<td align="right"><label style="font-weight:initial" for="product2">¥199.00</label></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="radio" name="product" id="product3" value="3" checked></td>
+				<td style="padding-left: 2em;"><label style="font-weight:initial" for="product3">掌柜</label></td>
+				<td align="right"><label style="font-weight:initial" for="product3">¥299.00</label></td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td align="center" width="10%" style="vertical-align: middle;"><input type="radio" name="paytype" id="pay-wx" value="1" checked></td>
+				<td align="center"><label style="font-weight:initial;font-size:24px;" for="pay-wx"><img src="resource/wxpay.png"/></label></td>
+			</tr>
+		</tbody>
+	</table>
+	<button type="submit" class="btn btn-success btn-block" style="width: 80%;margin: 0 auto;">立即支付</button>
+</form>
+{</block>}

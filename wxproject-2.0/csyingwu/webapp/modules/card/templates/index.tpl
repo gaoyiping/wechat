@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>会员列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/new_style/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/new_style/js/jquery.js"></script>
+
+    <script type='text/javascript' src='modpub/js/calendar.js'> </script>
+    <script type="text/javascript" src="/FineMessBox/js/common.js"></script>
+    <script type="text/javascript" src="/FineMessBox/js/subModal.js"></script>
+    <script type="text/javascript" src="modpub/js/ajax.js"> </script>
+
+    <link rel="stylesheet" type="text/css" href="/FineMessBox/css/subModal.css" />
+    <link rel="stylesheet" type="text/css" href="/new_style/css/sanming.css" />
+    <link rel="stylesheet" type="text/css" href="/new_style/css/Popup.css" />
+
+    {literal}
+        <script language="JavaScript" >
+            function AlertMessageBox()
+            {
+
+
+
+            }
+            function Showopen(userid)
+            {
+
+                showPopWin('查看会员信息',"index.php?module=CertifiedUserList&action=view&userid="+userid, 600, 400, AlertMessageBox,true,true)
+            }
+
+            function ccolor(c){
+                if(c.checked){
+                    c.parentNode.parentNode.bgColor = 'green';
+                } else {
+                    c.parentNode.parentNode.bgColor = 'white';
+                }
+            }
+            function e(t){
+                var es = document.form2.elements;
+                for(var i=0;i<es.length;i++){
+                    if(es[i].type == 'checkbox' ){
+                        if(t == 'a'){
+                            es[i].checked = true; ccolor(es[i]);
+                        }
+                        if(t == 'o'){
+                            es[i].checked = !es[i].checked; ccolor(es[i]);
+                        }
+                    }
+                }
+            }
+
+
+            function Init()
+            {
+
+                var   dropElement1=document.getElementById("Select1");
+                var   dropElement2=document.getElementById("Select2");
+                var   dropElement3=document.getElementById("Select3");
+                RemoveDropDownList(dropElement1);
+                RemoveDropDownList(dropElement2);
+                RemoveDropDownList(dropElement3);
+
+                var country;
+                var province;
+                var city;
+                var url = "index.php?module=CertifiedUserList&action=ajax&GroupID=0";
+                ajax(url,function(text){
+                    var strs= new Array();
+                    strs=text.split("|");
+                    for(var i=0; i<strs.length-1;   i++)
+                    {
+                        var opp= new Array();
+                        opp=String(strs[i]).split(",");
+
+
+                        var   eOption=document.createElement("option");
+                        eOption.value=opp[1];
+                        eOption.text=opp[0];
+                        dropElement1.add(eOption);
+
+                    }
+
+                });
+
+            }
+
+            function   selectCity()
+            {
+                var   dropElement1=document.getElementById("Select1");
+                var   dropElement2=document.getElementById("Select2");
+                var   dropElement3=document.getElementById("Select3");
+                var   name=dropElement1.value;
+
+                RemoveDropDownList(dropElement2);
+                RemoveDropDownList(dropElement3);
+
+                if(name!="")
+                {
+
+                    var url = "index.php?module=CertifiedUserList&action=ajax&GroupID="+name;
+
+                    ajax(url,function(text){
+                        var strs= new Array();
+                        strs=text.split("|");
+                        for(var i=0; i<strs.length-1;   i++)
+                        {
+                            var opp= new Array();
+                            opp=String(strs[i]).split(",");
+
+
+                            var   eOption=document.createElement("option");
+                            eOption.value=opp[1];
+                            eOption.text=opp[0];
+                            dropElement2.add(eOption);
+
+                        }
+
+                    });
+                }
+            }
+
+            function   selectCountry()
+            {
+
+                var   dropElement1=document.getElementById("Select1");
+                var   dropElement2=document.getElementById("Select2");
+                var   dropElement3=document.getElementById("Select3");
+                var   name=dropElement2.value;
+
+
+                RemoveDropDownList(dropElement3);
+
+                if(name!="")
+                {
+
+                    var url = "index.php?module=CertifiedUserList&action=ajax&GroupID="+name;
+
+                    ajax(url,function(text){
+                        var strs= new Array();
+                        strs=text.split("|");
+                        for(var i=0; i<strs.length-1;   i++)
+                        {
+                            var opp= new Array();
+                            opp=String(strs[i]).split(",");
+
+
+                            var   eOption=document.createElement("option");
+                            eOption.value=opp[1];
+                            eOption.text=opp[0];
+                            dropElement3.add(eOption);
+
+                        }
+
+                    });
+                }
+            }
+
+            function   RemoveDropDownList(obj)
+            {
+                if(obj)
+                {
+                    var   len=obj.options.length;
+                    if(len>0)
+                    {
+                        //alert(len);
+                        for(var   i=len;i>=1;i--)
+                        {
+                            obj.remove(i);
+                        }
+                    }
+                }
+
+            }
+
+        </script>
+    {/literal}
+
+</head>
+
+
+<body scroll="yes" >
+
+<div class="place">
+    <ul class="placeul">
+        <li><a href="#">[店铺管理]</a></li>
+        <li><a href="#">会员卡列表</a></li>
+    </ul>
+</div>
+
+    <div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible"
+         id="Div_Content">
+        <div style="margin-top:10px;padding:10px;height:30px; width:100%;border-bottom:solid 1px #dedede; height:72px; border-left:solid 1px #fff;border-right:solid 1px #fff; ">
+{*<div style="border:solid 1px #dedede;width:100%;height:80px;border-left:solid 0px;border-right:solid 0px;">*}
+    <form name="form1" action="index.php" method="get">
+        <input type="hidden" name="module" value="card" />
+        <table width=99% border=0 align="center" >
+            <tr><td>
+                卡类型
+                <select name="type" style="height:24px;">
+                    <option value="" >全部</option>
+                    <option value="0">普卡</option>
+                    <option value="1">银卡</option>
+                    <option value="2">金卡</option>
+                </select>
+
+                编号/姓名
+                    <input type='text' name='keyword' size='8' value="{$keyword}" class="scinput_s"/>
+               
+                <input type="submit" value="查 询" class="scbtn">
+                
+            </td></tr>
+        </table>
+    </form>
+</div>
+
+
+
+    <form name="form2" method="post" action="index.php?module=CertifiedUserList&action=okall" >
+        <table align="center" bgcolor="#dedede" border="0" cellpadding="0" cellspacing="0" width="99%">
+            <tr><td>
+            <table width=100% class="tablelist" cellpadding="5" cellspacing="1" border="0">
+                <thead>
+                    <tr>
+                        <th>选</th>
+                        <th>序</th>
+                        <th>会员编号</th>
+                        <th>会员名称</th>
+                        <th>卡类型</th>
+                        <th>第几位</th>
+                        <th>见点次数</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+            <tbody>
+        {foreach from=$userlist item=item name=f1}
+            <tr bgColor=#FFFFFF>
+                <td><input type="checkbox" name="ids[]" value="{$item->id}" onclick="ccolor(this);"/></td>
+                <td align="center">{$item->noid}</td>
+                <td align="center">{$item->user_id}</td>
+                <td align="center">{$item->user_name}</td>
+                <td align="center">
+                    <font color="#116600">{if $item->type==0} 普卡{/if}</font>
+                    <font color="#1166FF">{if  $item->type==1} 银卡{/if}</font>
+                    <font color="#966F12">{if $item->type==2} 金卡{/if}</font>
+                </td>
+                <td align="center">{$item->num}</td>
+				<td align="center">{$item->zon}</td>
+                <td align="center">
+                    {if $item->status==0}分红中{/if}
+                    {if $item->status==1}结束{/if}
+                </td>
+                
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    </td></tr>
+            
+            </table>
+    </form>
+
+        <table align="center">
+            <tr>
+                <td>
+                    <div class="pages">
+                        {$pagehtml}
+                    </div>
+                </td>
+            </tr>
+        </table>
+</div>
+
+<script type="text/javascript">
+    $('.tablelist tbody tr:odd').addClass('odd');
+</script>
+
+</body>
+
+</html>

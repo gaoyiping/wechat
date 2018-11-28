@@ -1,0 +1,84 @@
+<?php
+require_once(MO_LIB_DIR . '/DBAction.class.php');
+
+
+class addAction extends Action {
+
+	public function getDefaultView() {
+		$request = $this->getContext()->getRequest();
+		$db = DBAction::getInstance();	
+				
+         $GroupID = addslashes(trim($request->getParameter('GroupID')));
+		  if($GroupID!="")
+		  {
+		     $sql1="select * from admin_cg_group where GroupID=".$GroupID.""; 
+			 
+                  $r = $db->select($sql1);
+				  if($r)
+				  {
+					  //处理价格格式
+					
+			          $request->setAttribute("GroupID",$r[0]->GroupID);
+					  $request->setAttribute("G_Level",$r[0]->G_Level);
+                       $request->setAttribute("G_CName",$r[0]->G_CName);
+				
+				  }
+		  }
+		  else
+		  {
+			      $request->setAttribute("GroupID",0);
+		          $request->setAttribute("G_Level",1);
+                  $request->setAttribute("G_CName","");
+		  }
+
+	    
+
+		return View :: INPUT;
+	}
+
+	public function execute(){		
+     	$db = DBAction::getInstance();
+		$request = $this->getContext()->getRequest();
+		   $GroupID = addslashes(trim($request->getParameter('GroupID')));
+		   $G_Level = addslashes(trim($request->getParameter('G_Level')));
+		     $G_CName = addslashes(trim($request->getParameter('G_CName')));
+
+			 $lev=1;
+			 if($G_Level=="")
+		     {
+			   $lev=1;
+			 }
+			 else
+		     {
+			   $lev=$G_Level+1;
+			 }
+             
+		   //添加商品
+		   $sql = "insert into admin_cg_group(G_CName,G_ParentID,G_ShowOrder,G_Level,G_ChildCount,G_Delete) " .
+			"values('$G_CName','$GroupID',0,'$lev',0,0)";
+		   $r = $db->insert($sql);	
+
+		   if($r == -1) {
+			header("Content-type:text/html;charset=utf-8");
+			echo "<script type='text/javascript'>" .
+				"alert('未知原因，添加地区失败！');" .
+				"</script>";
+			return $this->getDefaultView();
+		} else {
+			header("Content-type:text/html;charset=utf-8");
+			echo "<script type='text/javascript'>" .
+				"alert('ok!');" .
+				"location.href='index.php?module=group&action=right&GroupID=".$GroupID."';window.parent.frames['leftbody'].location.reload();  
+</script>";
+		}
+		   return;
+		
+	}
+
+	
+	public function getRequestMethods(){
+		return Request :: POST;
+	}
+
+}
+?>

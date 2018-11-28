@@ -1,0 +1,11 @@
+<?php
+class IndexInputView extends SmartyView {
+    public function execute() {
+		$request = $this->getContext()->getRequest();
+		$this->setAttribute("total_money", $request->getAttribute("total_money"));
+		$this->setAttribute("user_list", $request->getAttribute("user_list"));
+		$this->setAttribute("user_count", $request->getAttribute("user_count"));
+		$this->setTemplate("index.tpl");
+    }
+}
+?>

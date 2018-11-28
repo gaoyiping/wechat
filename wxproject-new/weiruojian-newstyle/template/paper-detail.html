@@ -1,0 +1,50 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<a href="{<spUrl c=paper a=index>}" class="pull-left glyphicon glyphicon-menu-left"></a>
+		<span>订单详情</span>
+	</header>
+</div>
+<div class="block">
+	<p class="line">订单编号：{<$paper.id>}</p>
+	{<if $paper.paper_status>}
+	<p class="line">订单状态：<span class="label label-primary">{<$paper.paper_status_txt>}</span></p>
+	{<else>}
+	<p class="line">订单状态：<span class="label label-default">{<$paper.paper_status_txt>}</span></p>
+	{</if>}
+	<p class="line">创建时间：{<$paper.paper_time|format_date>}</p>
+</div>
+<section class="ect-pro-list">
+	<ul>
+	{<foreach $paperitemlist as $item>}
+		<li class="ect-pro-item">
+			<div class="ect-clear-over">
+				<a><img src="{<$item.banner>}"></a>
+				<dl>
+					<dt>
+						<h4 class="ect-pro-title">{<$item.name>}</h4>
+					</dt>
+					<dt>
+						<p>
+							<strong id="{<$item.id>}" class="mcolor" data-price="{<$item.price>}", data-count="{<$item.count>}">¥{<$item.price * $item.product_count>}</strong>
+							&nbsp;
+							<small>【<span class="mcolor">¥{<$item.price>} x {<$item.product_count>}</span>】</small></p>
+					</dt>
+				</dl>
+			</div>
+		</li>
+	{</foreach>}
+	</ul>
+</section>
+<div class="block">
+	<p class="line">{<$paper.mail_people>}&nbsp;&nbsp;<big>{<$paper.mail_cellphone>}</big></p>
+	<p class="line"><small>{<$paper.mail_address>}</small></p>
+</div>
+<div class="block">
+	<p class="line text-right">该订单完成后，您将获得 <span class="mcolor">{<$cartpoint>}</span>积分</p>
+	<p class="line text-right">商品总价 <span class="mcolor">¥ {<$cartprice>}元</span></p>
+</div>
+<div class="ect-deepbottom"></div>
+{</block>}

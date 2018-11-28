@@ -1,0 +1,38 @@
+<?php
+require_once(MO_LIB_DIR . '/DBAction.class.php');
+
+class tuijianajaxAction extends Action {
+
+	public function getDefaultView() {
+		$db = DBAction::getInstance();
+		$request = $this->getContext()->getRequest();
+		$userid = addslashes(trim($request->getParameter('uid')));
+		
+		$sql = "select node from ntb_user_ref where p_node = '$userid'";
+		$r = $db->select($sql);
+		//
+		$str="";
+		if($r)
+		{
+			
+		    foreach($r as $list)
+			{
+			  $str=$str.$list->node;
+			}
+			echo $str;
+		}
+		
+		return;
+	}
+
+	public function execute(){
+		
+	}
+
+	public function getRequestMethods(){
+		return Request :: NONE;
+	}
+
+}
+
+?>

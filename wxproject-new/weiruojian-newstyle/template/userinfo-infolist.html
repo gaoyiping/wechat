@@ -1,0 +1,17 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<a href="{<spUrl c=userinfo a=index>}" class="pull-left glyphicon glyphicon-menu-left"></a>
+		<span>个人信息</span>
+	</header>
+</div>
+<p class="block-head"><i class="glyphicon glyphicon-gift"></i> 收货信息</p>
+<div class="block">
+	<p class="line">{<$userinfo.mail_people>}&nbsp;&nbsp;<big>{<$userinfo.mail_cellphone>}</big></p>
+	<p class="line"><small>{<$userinfo.mail_address>}</small></p>
+	<p class="line"><a class="btn btn-info btn-xs" href="{<spUrl c=userinfo a=mailaddress>}">修改</a></p>
+</div>
+<div class="ect-deepbottom"></div>
+{</block>}

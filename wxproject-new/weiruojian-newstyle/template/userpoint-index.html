@@ -1,0 +1,42 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="ect-bg">
+	<header class="ect-header ect-margin-tb ect-margin-lr text-center ect-bg">
+		<a href="{<spUrl c=userinfo a=index>}" class="pull-left glyphicon glyphicon-menu-left"></a>
+		<span>我的钱包</span>
+	</header>
+</div>
+<table width="100%"class="table table-point">
+	<tbody>
+		<tr>
+			<td>订单积分</td>
+			<td align="right">¥{<$user.point_ddjf>}</td>
+		</tr>
+		<tr>
+			<td>硒粉积分</td>
+			<td align="right">¥{<$user.point_xifen>}</td>
+		</tr>
+		<tr>
+			<td>投资券</td>
+			<td align="right">¥{<$user.point_tzq>}</td>
+		</tr>
+		<tr>
+			<td>梦想券</td>
+			<td align="right">¥{<$user.point_mxq>}</td>
+		</tr>
+		<tr>
+			<td>可兑换积分</td>
+			<td align="right"><a class="mcolor" style="text-decoration: underline;" href="#">¥{<$user.point_gold>}</a></td>
+		</tr>
+	</tbody>
+</table>
+<br/>
+<p class="block-head"><i class="glyphicon glyphicon-align-right"></i> 积分获取</p>
+<div class="block">
+	<p class="line">官方财务微信号二维码</p>
+	<p class="line">充值时间段为 09:00 ~ 21:00</p>
+	<p class="line"><img style="width: 50%" src="resource/recharge.jpg"/></p>
+</div>
+<div class="ect-deepbottom"></div>
+{</block>}

@@ -1,0 +1,124 @@
+<?php
+require_once(MO_LIB_DIR . '/DBAction.class.php');
+require_once(MO_LIB_DIR . '/Tools.class.php');
+require_once(MO_LIB_DIR . '/SysConst.class.php');
+
+class addAction extends Action {
+
+	public function getDefaultView() {
+		$request = $this->getContext()->getRequest();
+		$db = DBAction::getInstance();
+		$userid = $this->getContext()->getStorage()->read('_user_id');
+
+		//用户信息
+		$sql = "select is_suoding from ntb_user where user_id = '$userid'";
+		$r = $db->select($sql);
+		if($r){
+            if($r[0]->is_suoding=="0")
+			{
+			    header("Content-type:text/html;charset=utf-8");
+			    echo "<script type='text/javascript'>" .
+				"alert('*您的账号已被锁定，请联系管理员');" .
+				"location.href='index.php?module=Login';</script>";
+			 }
+			
+		}
+
+
+		//取得凭证号
+		$cfnumber = confirmNum($userid);
+		$request->setAttribute("cfnumber",$cfnumber);
+		//用户信息
+		$sql = "select user_name,e_money from ntb_user where user_id = '$userid'";
+		$r = $db->select($sql);
+		if($r){
+			$request->setAttribute("username",$r[0]->user_name);
+			$request->setAttribute("emoney",$r[0]->e_money);
+$request->setAttribute("userid",$userid);
+			
+		}
+		return View :: INPUT;
+	}
+
+	public function execute(){
+		$request = $this->getContext()->getRequest();
+		$db = DBAction::getInstance();
+		$amount = intval($request->getParameter('amount'));
+		$toid = addslashes(trim($request->getParameter('toid')));
+		//验证amount
+		if($amount <= 0 ){
+			$request->setError('error','转账金额不能是零或负数！');
+			return $this->getDefaultView();
+		}
+		//验证用户
+		$sql = "select user_id from ntb_user where user_id = '$toid'";
+		$r = $db->select($sql);
+		if(!$r){
+			$request->setError('error',"茶馆 $toid 不存在！");
+			return $this->getDefaultView();
+		}
+		$toid = $r[0]->user_id;
+		//转账操作
+		$userid = $this->getContext()->getStorage()->read('_user_id');
+		//EDIT BY MOX for anti sql inject leaks 2011.8.16
+		$cfnumber = addslashes(trim($request->getParameter("cfnumber")));
+		//金额足够
+		$sql = "select e_money from ntb_user where user_id='$userid'";
+		$r = $db->select($sql);
+		if(!$r || $r[0]->e_money < $amount){
+			$request->setError('error','您的电子货币余额不足！');
+			return $this->getDefaultView();
+		}
+		//转账事务
+		$roll_back = false;
+		$db->begin();
+		do {
+			// userid - 钱
+			$sql = "update ntb_user set e_money = e_money-'$amount' " .
+				   "where user_id = '$userid' and e_money >= '$amount'";
+			$r = $db->update($sql);
+			if($r != 1){
+				$roll_back = true;
+				break;
+			}
+			// toid + 钱
+			$sql = "update ntb_user set e_money = e_money+'$amount' " .
+				   "where user_id = '$toid'";
+			$r = $db->update($sql);
+			if($r != 1){
+				$roll_back = true;
+				break;
+			}
+			// 记录
+			$sql = "insert into ntb_record " . 
+				   "(operation,accepter,amount,cfnumber,type,status,add_date,replay_date,mtype) " .
+				   "values('$userid','$toid','$amount','$cfnumber','" . 
+				   E_MONEY_EXCHANGE . "',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1)";
+			$r = $db->insert($sql);
+			if($r != 1){
+				$roll_back = true;
+				break;
+			}
+		}while(0);
+		if($roll_back){
+			$db->rollback();
+			header("Content-type:text/html;charset=utf-8");
+			echo"<script language='javascript'> " . 
+				"alert('转账失败！可能是您的电子货币不足！');" . 
+				"window.parent.hidePopWin(true);</script>";
+		} else {
+			$db->commit();
+			header("Content-type:text/html;charset=utf-8");
+			echo"<script language='javascript'> " . 
+				"alert('转账成功！请查看！');" . 
+				"window.parent.hidePopWin(true);</script>";
+		}
+		return;
+	}
+
+	public function getRequestMethods(){
+		return Request :: POST;
+	}
+
+}
+?>

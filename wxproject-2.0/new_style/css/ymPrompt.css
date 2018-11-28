@@ -1,0 +1,90 @@
+#ym-window {
+	FONT-FAMILY: "ËÎÌו"; BACKGROUND: #fff; FONT-SIZE: 12px; OVERFLOW: hidden
+}
+.ym-tl {
+	PADDING-LEFT: 3px; BACKGROUND: url(images/title_bg_left.gif) #cfd7ec no-repeat 0px 0px
+}
+.ym-tr {
+	PADDING-RIGHT: 3px; BACKGROUND: url(images/title_bg_right.gif) #cfd7ec no-repeat right 0px
+}
+.ym-tc {
+	LINE-HEIGHT: 25px; BACKGROUND: url(images/title_bg_center.gif) #cfd7ec repeat-x 0px 0px; HEIGHT: 25px; OVERFLOW: hidden
+}
+.ym-ttc {
+	HEIGHT: 3px
+}
+.ym-header-text {
+	FLOAT: left; COLOR: #fff; MARGIN-LEFT: 5px; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+.ym-header-tools {
+	MARGIN-TOP: 5px; FLOAT: right
+}
+.ym-header-tools STRONG {
+	DISPLAY: none
+}
+.ym-ml {
+	PADDING-LEFT: 3px; BACKGROUND: url(images/win_l.gif) repeat-y 0px 0px
+}
+.ym-mr {
+	PADDING-RIGHT: 3px; BACKGROUND: url(images/win_r.gif) repeat-y right 0px
+}
+.ym-mc {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BACKGROUND: url(images/content_bg.gif) repeat-x 0px 0px; PADDING-TOP: 0px
+}
+.ym-body {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 12px; OVERFLOW: auto; PADDING-TOP: 0px
+}
+.ym-btn {
+	TEXT-ALIGN: center
+}
+.ym-bl {
+	PADDING-LEFT: 3px; BACKGROUND: url(images/win_lb.gif) no-repeat 0px bottom
+}
+.ym-br {
+	PADDING-RIGHT: 3px; BACKGROUND: url(images/win_rb.gif) no-repeat right bottom
+}
+.ym-bc {
+	BACKGROUND: url(images/win_b.gif) repeat-x 0px bottom; HEIGHT: 3px; FONT-SIZE: 3px
+}
+.ymPrompt_alert {
+	PADDING-LEFT: 90px; BACKGROUND: url(images/info.gif) no-repeat 20px 50%
+}
+.ymPrompt_succeed {
+	PADDING-LEFT: 90px; BACKGROUND: url(images/right.gif) no-repeat 20px 50%
+}
+.ymPrompt_error {
+	PADDING-LEFT: 90px; BACKGROUND: url(images/err.gif) no-repeat 20px 50%
+}
+.ymPrompt_confirm {
+	PADDING-LEFT: 90px; BACKGROUND: url(images/ask.gif) no-repeat 20px 50%
+}
+.ymPrompt_alert .ym-content {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 50px
+}
+.ymPrompt_succeed .ym-content {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 50px
+}
+.ymPrompt_error .ym-content {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 50px
+}
+.ymPrompt_confirm .ym-content {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 50px
+}
+.ym-header-tools DIV {
+	MARGIN: 0px 1px; WIDTH: 16px; BACKGROUND: url(images/ico.gif) no-repeat 0px 0px; FLOAT: left; HEIGHT: 16px; CURSOR: pointer
+}
+.ymPrompt_close {
+	BACKGROUND-POSITION: -16px 0px
+}
+.ymPrompt_max {
+	BACKGROUND-POSITION: 0px -16px
+}
+.ymPrompt_min {
+	BACKGROUND-POSITION: 0px 0px
+}
+.ymPrompt_normal {
+	BACKGROUND-POSITION: -16px -16px
+}
+INPUT.btnStyle {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; LINE-HEIGHT: 21px; MARGIN: 10px 0px; WIDTH: 80px; BACKGROUND: url(images/btn_bg.gif) no-repeat; HEIGHT: 21px; COLOR: #183c94; FONT-SIZE: 12px; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}

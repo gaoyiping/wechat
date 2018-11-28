@@ -1,0 +1,46 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="index-main comWidth">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide"><a href='#'><img src='resource/example/banner1.png' border='0'/></a></div>
+			<div class="swiper-slide"><a href='#'><img src='resource/example/banner2.png' border='0' /></a></div>
+			<div class="swiper-slide"><a href='#'><img src='resource/example/banner3.png' border='0' /></a></div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+
+	<div class="index-theme">
+		<ul>
+			<li class="fr"><a href="#" target="_blank"><img src="resource/nav/index-theme-icon1.gif" border="0"></a></li>
+			<li class="fl"><a href="#" target="_blank"><img src="resource/nav/index-theme-icon2.gif" border="0"></a></li>
+			<li class="fr"><a href="#" target="_blank"><img src="resource/nav/index-theme-icon3.gif" border="0"></a></li>
+			<li class="fl"><a href="#" target="_blank"><img src="resource/nav/index-theme-icon4.gif" border="0"></a></li>
+		</ul>
+	</div>
+	<div class="index-more">
+		<ul class="index-more-list">
+			{<foreach $products as $product>}
+			<li class="index-more-item">
+				<a href="{<spUrl c=wxmall a=detail pid=$product.id>}"><img class="index-more-img-lg" src="{<$product.banner>}"></a>
+				<a href="{<spUrl c=wxmall a=detail pid=$product.id>}"><p class="index-more-info">{<$product.name>}</p></a>
+				<span class="index-more-case">¥ {<$product.price>}元</span>
+			</li>
+			{</foreach>}
+		</ul>
+	</div>
+</div>
+{</block>}
+
+{<block name=javascript>}
+<script language="javascript">
+	/*banner滚动图片*/
+	var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 1,
+        loop: true,
+        autoplay : 3000
+    });
+</script>
+{</block>}

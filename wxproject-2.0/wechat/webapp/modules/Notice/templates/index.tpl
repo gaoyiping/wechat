@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>公告查阅</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<link rel="stylesheet" href="modpub/css/base.css" type="text/css">
+ <link rel="stylesheet" type="text/css" href="/new_style/css/General.css" />
+    <link rel="stylesheet" type="text/css" href="/new_style/css/sanming.css" />
+
+<link rel="stylesheet" type="text/css" href="/FineMessBox/css/subModal.css" />
+<script type="text/javascript" src="/FineMessBox/js/common.js"></script>
+<script type="text/javascript" src="/FineMessBox/js/subModal.js"></script>
+<script type="text/javascript">
+{literal}
+ function AlertMessageBox(file_name)
+ {
+ }
+
+        function ShowDepartID(id)
+        {
+            showPopWin("查看公告详细内容","index.php?module=Notice&action=view&id="+id, 650, 400, AlertMessageBox,true,true)
+        }
+
+      
+</script>
+{/literal}
+</head>
+<body scroll="yes">
+    <div style="background-color: #ffffff; margin-right: 2px" id="Div_right">
+        <table style="width: 99%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="line_leftright_borderclor">
+
+                        <script>
+                                     
+                        </script>
+
+                        <div style="margin-top: -1px; height: 30px;  overflow: hidden" id="ctl00_Div_right_top"
+                            class="YFTmainright_r1_c2_gj">
+                            <div style="position: relative; line-height: 30px; width: 100%">
+                                &nbsp;<span class="">[个人中心]</span> >> 公告查阅 
+                            </div>
+                        </div>
+                        <div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible"
+                            id="Div_Content"><br/>
+
+
+<table align="center" bgcolor="#dedede" border="0" cellpadding="0" cellspacing="0" width="95%"><tr><td>
+  <table border="0" cellpadding="5" cellspacing="1" width="100%">
+    <tr class="td3"> 
+      <td width="5%"><div align="center"><font color="#FFFFFF">序号</font></div></td>
+      <td><div align="center"><font color="#FFFFFF">公告标题</font></div></td>
+      <td width="12%"><div align="center"><font color="#FFFFFF">发布时间</font></div></td>
+      <td width="8%"><div align="center"><font color="#FFFFFF">操作</font></div></td>
+    </tr>
+    {foreach from=$list item=item name=f1}
+    <tr class="td4"> 
+      <td> 
+        <div align="center">{$smarty.foreach.f1.iteration}</div></td>
+      <td> 
+        <div align="center">{$item->title}</div></td>
+      <td>
+        <div align="center">{$item->add_date|date_format:'%Y-%m-%d'}</div></td>
+      <td>
+        <div align="center"><a href="#" onclick="ShowDepartID({$item->id});">查看详细</a></div></td>
+    </tr>
+    {/foreach}
+  </table>
+</td></tr></table>
+<br/>
+<table align="center"><tr><td>
+<div class="pages">
+  {$pagehtml}
+  </div>
+</td></tr></table>
+
+</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="YFTmainright_r3_c2_gj" height="1">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script language="javascript" src="/new_style/css/webjs.js"> </script>
+</body>
+</html>
+

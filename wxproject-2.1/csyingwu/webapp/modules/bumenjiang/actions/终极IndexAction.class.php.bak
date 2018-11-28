@@ -1,0 +1,175 @@
+<?php
+require_once(MO_LIB_DIR . '/DBAction.class.php');
+require_once(MO_LIB_DIR . '/SysConst.class.php');
+
+class IndexAction extends Action {
+
+	public function getDefaultView() {
+		$db = DBAction::getInstance();
+		$request = $this->getContext()->getRequest();
+
+		//计算月用户总数
+		$sql = "select max(sNo) as sNo,left(add_date,10) as add_date   from ntb_money";
+		$r = $db->select($sql);
+		if($r)
+		{
+		  $request->setAttribute('info', $r[0]);
+		}
+
+		
+
+		return View :: INPUT;
+	}
+
+	public function execute() {
+		$db = DBAction::getInstance();
+		$request = $this->getContext()->getRequest();
+		$sNo = intval($request->getParameter('sNo'));
+	  //  echo "<div style='padding-top:200px;text-align:center;font-size:12px;'><img src='/new_style/images/loading_circle.gif' /> 正在结算中请稍候...</div>";
+		
+	    
+		//获取所有要参与奖金结算的会员
+
+		//获得组织奖会员
+         $sql = "select b.lt,b.rt,a.userid,a.left_money,a.right_money,a.center_money  from ntb_duipeng a left join ntb_user_ref b on a.userid=b.node  where (left_money<>0 && center_money<>0) or (left_money<>0 && right_money<>0) or (center_money<>0 && right_money<>0)";
+		 $rfazhan = $db->select($sql);   
+
+		 $userlist="";
+        
+		 if($rfazhan)
+		{
+				foreach($rfazhan as $list)
+				{
+					
+					 $userlist.=$list->userid.",";
+				 
+				}
+
+
+				foreach($rfazhan as $list)
+				{
+					
+					$lt=$list->lt;
+					$rt=$list->rt;
+	 
+					//获取一代直推培育奖
+				    $sql = "select a.node,a.p_node,b.uplevel,a.lt,a.rt from ntb_user_ref a left join ntb_user b on  a.node=b.user_id where a.lt < '$lt' and a.rt > '$rt' order by a.rt " ;
+                   
+					  $r2 = $db->select($sql);  
+					
+						  if($r2)
+						  {
+								
+								for($i=0;$i<count($r2);$i++)
+								{
+                                  
+									$uplevel=$r2[$i]->uplevel;
+									$node=$r2[$i]->node;
+									$v_lt=$r2[$i]->lt;
+									$v_rt=$r2[$i]->rt;          
+							        
+									$limit=0;
+									if($i<$uplevel)
+									{
+									   $limit=$i+1;
+									}
+									else
+									{
+									   $limit=$uplevel;
+									}
+									//if(strpos($userlist,$r2[$i]->node.",")!=0){}
+                                    
+								   $strsql="select level,GROUP_CONCAT(node) as user_str  from ntb_user_ref  where lt>'$v_lt' and rt<'$v_rt'  "
+								   ." group by level  limit ".($i+1)."";
+								   
+								   $jinsuor = $db->select($strsql);  
+								   $jishu=0;
+								
+								 
+                                   
+								 for($k=0;$k<count($jinsuor);$k++)
+								   {
+                                        $user_str= $arr=split(",",$jinsuor[$k]->user_str);
+									   
+									    for($j=0;$j<count($user_str);$j++)
+									    {
+										    if(strpos($userlist,$user_str[$j].",")!=0)
+											{
+											   $jishu=$jishu+1;
+											   break;
+											}
+
+											
+										}
+										
+										
+								   }
+								   $daishu=$i+$jishu;
+								  
+								 
+								   $bu=$i-$jishu;
+							      
+								   if($uplevel!=0)
+									{
+									   if($i-$bu<$uplevel){
+								       echo "第".$i."层". $node."--拿".$list->userid."领导奖 级别：".$uplevel." 代数".$jishu." <br />";
+									   }
+									}
+									
+								  
+									
+								
+									
+								}
+								echo "--------<br />";
+						  }
+				}
+		}
+      
+       //  echo $userlist;
+
+	    return ;
+		$this->getContext()->getController()->redirect('index.php?module=bumenjiang');
+		return;
+	}
+
+	function sub_string($str, $len)
+		
+	{
+		    $charset="utf-8";
+			if( !is_numeric($len) or $len <= 0) {//如果截取长度小于等于
+				return "";      //返回空
+			}
+			$sLen = strlen($str);    //获取原始字串长度
+			if( $len >= $sLen ) {   //如果截取长度大于总字符串长度
+				return $str;     //直接返回当前字符串
+			} 
+			if ( strtolower($charset) == "utf-8" ) { //如果编码为为utf-8
+				$len_step = 3;      //则中文字符长度为3
+			} else {        //如果不是
+				$len_step = 2;      //如果是gb2312或big5编码，则中文字符长度为2
+			}
+			//执行截取操作
+			$len_i = 0;   //初始化计数当前已截取的字符串个数，此值为字符串的个数值
+			$substr_len = 0; //初始化应该要截取的总字节数
+			for( $i=0; $i < $sLen; $i++ ) { //开始循环
+				if ( $len_i >= $len ) break; //总截取$len个字符串后，停止循环
+				if( ord(substr($str,$i,1)) > 0xa0 ) { //如果是中文字符串
+					$i += $len_step - 1;   //
+					$substr_len += $len_step;  //当前总字节数加上相应编码的中文字符长度
+				} else {        //如果字符不是中文
+					$substr_len ++;     //加1个字节
+				}
+				$len_i ++;     //已经截取字符串个数增加
+			}
+			$result_str = substr($str,0,$substr_len ); //获取结果
+			return $result_str;    //返回结果
+    }
+
+
+	public function getRequestMethods() {
+		return Request :: POST;
+	}
+
+}
+?>

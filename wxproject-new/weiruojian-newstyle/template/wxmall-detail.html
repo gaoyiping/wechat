@@ -1,0 +1,69 @@
+{<extends 'base.html'>}
+
+{<block name=content>}
+<div class="goods">
+	<div class="ect-bg">
+		<header class="ect-header ect-margin-tb ect-margin-lr text-center icon-write ect-bg">
+			<a href="javascript:history.go(-1);" class="pull-left glyphicon glyphicon-menu-left"></a>
+			<span>商品描述</span>
+		</header>
+	</div>
+	<div class="goods-photo">
+		<ul class="swiper-wrapper">
+			<li class="swiper-slide tb-lr-center">
+				<img src="{<$product.banner>}"/>
+			</li>
+		</ul>
+	</div>
+	<div class="goods-info">
+		<section class="goods-title">
+			<h3 class="padding-all"><i class="glyphicon glyphicon-thumbs-up" style="color: #1CBB7F"></i> {<$product.name>}</h3>
+		</section>
+		<section class="goods-price padding-all">
+			<p class="p-price">
+				<span style="color: #1CBB7F">¥ {<$product.price>}元</span>
+				<button class="btn-buynow" onclick="tobuy();">立即购买</button>
+				<button class="btn-cartin" onclick="tocart();">加入购物车</button>
+			</p>
+			<p class="p-market">
+				市场价<del style="margin-left: 0.6rem;">¥ {<$product.prices>}元</del>
+			</p>
+			<p>
+				<span class="text-left" style="display: inline-block;width: 48%;">积分：{<$product.point>}</span>
+				<span class="text-right" style="display: inline-block;width: 48%;">库存 {<$product.inbag>}</span>
+			</p>
+		</section>
+		<section id="detail-guide" class="padding-all text-center view-more">
+			<a style="color: #888;font-size: 14px;" onclick="showdetail();">点击查看商品详情</a>
+		</section>
+		<div id="detail-content" class="block format-image" style="display:none;"></div>
+		<div class="ect-deepbottom"></div>
+	</div>
+</div>
+{</block>}
+
+{<block name=javascript>}
+<script language="javascript">
+var pid = {<$product.id>};
+$(document).ready(function(){
+});
+function tobuy() {
+	$.getJSON('{<spUrl c=cart a=cartputin>}', {pid: pid}, function(result) {
+		location.href = "{<spUrl c=cart a=index>}";
+	});
+}
+
+function tocart() {
+	$.getJSON('{<spUrl c=cart a=cartputin>}', {pid: pid});
+	alert("已加入购物车");
+}
+
+function showdetail() {
+	$("#detail-guide").hide();
+	$.getJSON('{<spUrl c=wxmall a=productcontent>}', {pid: pid}, function(result) {
+		$("#detail-content").html(result);
+		$("#detail-content").show();
+	});
+}
+</script>
+{</block>}

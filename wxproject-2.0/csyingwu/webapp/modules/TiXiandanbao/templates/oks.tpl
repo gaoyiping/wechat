@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>用户提现</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="modpub/css/base.css">
+<script type='text/javascript' src='modpub/js/calendar.js'> </script>
+<link rel="stylesheet" type="text/css" href="/new_style/css/sanming.css" />
+    <link rel="stylesheet" type="text/css" href="/new_style/css/Popup.css" />
+</head>
+<body scroll="yes">
+<div style="background-color: #ffffff; margin-right: 2px" id="Div_right">
+        <table style="width: 99%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="line_leftright_borderclor">
+
+                        <script>
+                                     
+                        </script>
+
+                        <div style="margin-top: -1px; height: 30px;  overflow: hidden" id="ctl00_Div_right_top"
+                            class="YFTmainright_r1_c2_gj">
+                            <div style="position: relative; line-height: 30px; width: 100%">
+                                &nbsp;<span class="Font_red Font_addbold">[财务管理]</span> >> 已处理的店铺提现申请
+                            </div>
+                        </div>
+                        <div style="min-height: 446px; width: 100%; height: auto !important; overflow: visible"
+                            id="Div_Content"><br />
+
+
+<form name="form1" action="index.php" method="get">
+<input type="hidden" name="module" value="TiXiandanbao" />
+<input type="hidden" name="ok" value="1" />
+<table width=95% border=0 align="center">
+  <tr><td>
+       <a href="index.php?module=TiXiandanbao">未处理的申请</a> | <a href="index.php?module=TiXian&ok=1" ><b>已处理的申请</b></a> &nbsp;&nbsp;
+    申请日期
+       <input name="startdate" value="{$startdate}" size="8" readonly class="button1"/>
+      <img src="modpub/images/datetime.gif" style="cursor:pointer;" onclick="new Calendar().show(document.form1.startdate);" />
+      至
+      <input name="enddate" value="{$enddate}" size="8" readonly class="button1"/>
+      <img src="modpub/images/datetime.gif" style="cursor:pointer;" onclick="new Calendar().show(document.form1.enddate);" />
+      <input type="submit" value="查 询" class="b02"> </td><td align="right">
+   
+    总计：<font color="red">{$total}</font>条    
+    <input type="button" value="导出本页" class="b02"  onclick="location.href=location.href+'&pageto=one';">
+   <input type="button" value="导出全部页" class="b02"  onclick="location.href=location.href+'&pageto=all';">
+  </td></tr>
+</table>
+</form>
+
+<table align="center" bgcolor="#dedede" border="0" cellpadding="0" cellspacing="0" width="95%">
+	<tr><td>
+		<table width=100% align=center border="0" cellpadding="5" cellspacing="1">
+			<tr class="td3">
+        <td width="2%"><div align="center"><font color="#FFFFFF">序</font></div></td>
+        <td width="8%"><div align="center">金额</div></td>
+				<td width="10%"><div align="center">申请时间</div></td>
+				<td width="15%"><div align="center">开户行</div></td>
+				<td width="10%"><div align="center">所在地</div></td>
+				<td width="8%"><div align="center">户名</div></td>
+				<td width="14%"><div align="center">银行卡号</div></td>
+				<td width="8%"><div align="center">账号</div></td>
+				<td width="11%"><div align="center">手机</div></td>
+				<td width="11%"><div align="center">审核时间</div></td>
+			</tr>
+			{foreach from=$list item=item name=f1}
+			<tr align=middle bgColor=#ffffff>
+        <td>{$smarty.foreach.f1.iteration}</td>
+				<td align="right">{$item->amount}</td>
+        <td>{$item->add_date}</font></td>
+					<td align="center">{$item->byinhang}</td>
+				<td align="left">{$item->byinhangdiqu}</td>
+				<td>{$item->byhname}</td>
+				<td align="center">{$item->byhsNo}</td>
+        <td>{$item->operation}</td>
+				<td>{$item->btel}</td>
+				<td>{$item->replay_date}</td>
+			</tr>
+      {/foreach}
+		</table>
+	</td></tr>
+  <tr height="35" bgColor=#ffffff><td valign="middle">
+    总累计：￥<font color="red">{$amounts}</font>
+    本页累计：￥<font color="red">{$pageamounts}</font>
+  </td></tr>
+</table>
+<br/>
+<p align="center">{$pagehtml}</p> 
+
+ </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="YFTmainright_r3_c2_gj" height="1">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script language="javascript" src="/new_style/css/webjs.js"> </script>
+</body>
+</html>
